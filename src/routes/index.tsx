@@ -1,5 +1,8 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { Helmet } from 'react-helmet-async'
+import Hero from '../components/hero'
+import Banner from '../components/banner'
+import ProductDisplay from '../components/productDisplay'
 
 export const containerVariants = {
   hidden: { opacity: 0 },
@@ -9,14 +12,14 @@ export const containerVariants = {
 
 const Index: React.FC = () => {
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      transition={{ type: 'tween', delay: 0.8, duration: 0.5 }}
-      className="hero"
-    ></motion.div>
+    <main>
+      <Helmet>
+        <title>Tolv</title>
+      </Helmet>
+      <Hero />
+      <Banner />
+      <ProductDisplay />
+    </main>
   )
 }
 
