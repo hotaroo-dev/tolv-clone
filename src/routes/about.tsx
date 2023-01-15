@@ -1,17 +1,14 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { containerVariants } from '.'
 
 const About: React.FC = () => {
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      transition={{ type: 'tween', delay: 1, duration: 0.5 }}
-      className="hero"
-    ></motion.div>
+    <motion.div>
+      <Helmet>
+        <title>Tolv - About us</title>
+      </Helmet>
+    </motion.div>
   )
 }
 

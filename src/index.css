@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Yrsa:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Yrsa:wght@400;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Montserrat', serif;
+  font-family: 'Yrsa', serif;
   color: #181818;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,54 +13,133 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@layer components {
-  .app {
-    @apply h-screen;
-  }
-
-  .header {
+@layer base {
+  header {
     @apply fixed top-0 z-10 w-full;
   }
 
-  .header .wrapper {
+  header .wrapper {
     @apply max-w-7xl mx-auto flex items-center px-8 py-2;
   }
 
-  .header .nav {
+  header .nav {
     @apply flex-1 hidden md:block;
   }
 
-  .header .mobile-nav {
+  header .mobile-nav {
     @apply flex-1 block md:hidden;
   }
 
-  .header .tabs {
+  header .tabs {
     @apply flex gap-7 items-center font-medium;
   }
 
-  .header .logo {
+  header .tabs a {
+    @apply underline-offset-4 decoration-stone-600 hover:underline;
+  }
+
+  header .tabs a.active {
+    @apply underline;
+  }
+
+  header .logo {
     @apply text-4xl font-bold;
   }
 
-  .header .logo span {
+  header .logo span {
     @apply inline-block rotate-[-12deg] translate-x-[-1px];
   }
 
-  .header .search {
+  header .search {
     @apply flex-1 flex justify-end;
   }
 
-  .header .search svg {
+  header .search svg {
     @apply w-6 h-6;
+  }
+
+  main > .products {
+    @apply mt-0;
+  }
+}
+
+@layer components {
+  .gradient {
+    @apply h-screen bg-gradient-to-r from-violet-500 to-fuchsia-500;
+  }
+
+  .text-wrapper {
+    @apply text-center mx-auto;
+  }
+
+  .text-wrapper .text-style {
+    @apply font-bold text-5xl;
+  }
+
+  .text-wrapper .text-normal {
+    @apply font-normal text-3xl;
+  }
+
+  .links a {
+    @apply text-orange-600 underline underline-offset-2;
+  }
+
+  .hero {
+    @apply h-screen grid grid-cols-2;
+  }
+
+  .hero .image-column {
+  }
+
+  .hero .image,
+  .product .image {
+    @apply h-full bg-center bg-cover bg-no-repeat;
+  }
+
+  .hero .text-column {
+    @apply self-center;
+  }
+
+  .hero .text-column .text-wrapper {
+    @apply w-[70%];
+  }
+
+  .banner {
+    @apply w-full bg-[#efcb56];
+  }
+
+  .banner .text-wrapper {
+    @apply w-3/5 py-32;
+  }
+
+  .products {
+    @apply py-[2px] mt-14 grid grid-cols-4 gap-[2px];
+  }
+
+  .products > .product {
+    @apply aspect-square relative;
+  }
+
+  .products > .product:hover > .image {
+    @apply blur-3xl duration-300 ease-in-out;
+  }
+
+  .products > .product:hover > .product-info {
+    @apply visible opacity-100 duration-300 ease-in-out;
+  }
+
+  .products > .product.large {
+    @apply col-span-2 aspect-auto;
+  }
+
+  .product > .product-info {
+    @apply z-10 invisible opacity-0 absolute top-1/2 left-[44%] -translate-x-1/2 -translate-y-[44%] text-lg leading-tight;
   }
 }
 
 @layer utilities {
-  .header .logo {
-    font-family: 'Yrsa', serif;
-  }
-  .hero {
-    height: 100%;
-    background-image: linear-gradient(to right, blue 50%, red 50%);
+  .normal-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
   }
 }
