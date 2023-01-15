@@ -1,4 +1,5 @@
 import React, { useLayoutEffect } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import { useLocation } from 'react-router-dom'
 import Header from './components/header'
 import Router from './router'
@@ -6,10 +7,10 @@ import Router from './router'
 const App: React.FC = () => {
   return (
     <Container>
-      <div className="app h-[150vh]">
+      <HelmetProvider>
         <Header />
         <Router />
-      </div>
+      </HelmetProvider>
     </Container>
   )
 }
