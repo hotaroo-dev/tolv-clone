@@ -16,8 +16,8 @@ const HeroLarge: React.FC = () => {
   )
   const opacityThree = useTransform(
     scrollY,
-    [offset * 2 - 2, offset * 2 - 1, offset * 3 - 3, offset * 3 - 2],
-    [0, 1, 1, 0]
+    [offset * 2 - 2, offset * 2 - 1],
+    [0, 1]
   )
   const opacity = [opacityOne, opacityTwo, opacityThree]
 

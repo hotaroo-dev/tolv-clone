@@ -148,7 +148,7 @@ body {
   }
 
   .hero-large .text-column .text-wrapper {
-    @apply h-[280px] w-[70%] py-4;
+    @apply w-[70%] py-4;
   }
 
   .text-column .text-slide:not(:first-child) .text-wrapper {
