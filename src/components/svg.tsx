@@ -26,6 +26,21 @@ export const Search = () => (
   </svg>
 )
 
+export const Exit = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.707 30.705">
+    <path
+      id="close"
+      d="M-11425-3541l-15,15,15-15-15-15,15,15,15-15-15,15,15,15Z"
+      transform="translate(11440.354 3556.353)"
+      fill="none"
+      stroke="#535851"
+      strokeLinecap="round"
+      strokeWidth="1"
+      vectorEffect="non-scaling-stroke"
+    ></path>
+  </svg>
+)
+
 export const Arrow = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

@@ -28,3 +28,23 @@ export const products: IProduct[] = [
   { name: 'Papa', type: 'Scatter Cushion' },
   { name: 'Neuf', type: 'Side Table' }
 ]
+
+interface IText {
+  text: string
+  links: string[]
+}
+
+export const heroText: IText[] = [
+  {
+    text: 'Eyes rest from an afternoon in the sun. Smooth textures feel cool on bare feet and skin.',
+    links: ['Kitsune sofa', 'armchair', 'I-O coffee table (steel base)']
+  },
+  {
+    text: 'A sip of cocktail brings back memories of the beach.',
+    links: ['Portobello armchair', 'foot stool (wood base)']
+  },
+  {
+    text: 'Sunset is a good time to gather. Evening light bathes the space in warm tones and colours.',
+    links: ['Copal', 'Fromage']
+  }
+]
