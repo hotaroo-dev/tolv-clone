@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { containerVariants } from '../routes'
-import { imageDelay, rows, spring, textDelay } from './hero'
+import { imageDelay, rows, textDelay } from './hero'
 import { heroText } from '../products'
 
 const offset = window.innerHeight
