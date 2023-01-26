@@ -205,7 +205,7 @@ body {
   }
 
   .products > .product:hover > .image {
-    @apply blur-2xl brightness-105 duration-300 ease-in-out;
+    @apply blur-3xl brightness-105 duration-300 ease-in-out;
   }
 
   .products > .product:hover > .product-info {
