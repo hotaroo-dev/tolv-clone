@@ -4,11 +4,12 @@ import { motion } from 'framer-motion'
 
 const About: React.FC = () => {
   return (
-    <motion.div>
+    <>
       <Helmet>
         <title>Tolv - About us</title>
       </Helmet>
-    </motion.div>
+      <motion.div></motion.div>
+    </>
   )
 }
 

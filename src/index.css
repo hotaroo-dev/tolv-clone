@@ -204,11 +204,11 @@ body {
     @apply sm:row-start-4;
   }
 
-  .products > .product:hover > .image {
-    @apply blur-3xl brightness-105 duration-300 ease-in-out;
+  .products > .product:hover .image {
+    @apply blur-2xl brightness-105 duration-300 ease-in-out;
   }
 
-  .products > .product:hover > .product-info {
+  .products > .product:hover .product-info {
     @apply visible opacity-100 duration-300 ease-in-out;
   }
 
@@ -216,7 +216,7 @@ body {
     @apply col-span-2 aspect-video sm:aspect-auto;
   }
 
-  .product > .product-info {
+  .product .product-info {
     @apply z-10 invisible opacity-0 absolute top-1/2 left-[44%] -translate-y-1/2 -translate-x-[44%] text-lg leading-tight;
   }
 }

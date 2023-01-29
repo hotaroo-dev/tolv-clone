@@ -14,8 +14,8 @@ const Router: React.FC = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route index element={<Index />} />
+        <Route path="/products/:productId/*" element={<Product />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/products/:productId" element={<Product />} />
         <Route path="/stockists" element={<Stockists />} />
         <Route path="/about" element={<About />} />
       </Routes>
