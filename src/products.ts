@@ -9,32 +9,30 @@ type productType =
   | 'Scatter Cushion'
 
 interface IProduct {
-  id: string
-  name: string
-  type: productType
-  large?: boolean
+  [key: string]: {
+    name: string
+    type: productType
+    large?: boolean
+  }
 }
-
-const randomId = () => Math.random().toString(32).slice(-6)
-
-export const products: IProduct[] = [
-  { id: randomId(), name: 'Cherry', type: 'Sofa', large: true },
-  { id: randomId(), name: 'Figura', type: 'Dining Chair' },
-  { id: randomId(), name: 'Inlay', type: 'Dining Chair' },
-  { id: randomId(), name: 'Bourbon', type: 'Desk' },
-  { id: randomId(), name: 'Copal', type: 'Sofa', large: true },
-  { id: randomId(), name: 'Kitsune', type: 'Armchair' },
-  { id: randomId(), name: 'Kile', type: 'Coffee Table', large: true },
-  { id: randomId(), name: 'Mooli', type: 'Coffee Table' },
-  { id: randomId(), name: 'Com', type: 'Dining Chair' },
-  { id: randomId(), name: 'Portobello', type: 'Sofa (wood base)', large: true },
-  { id: randomId(), name: 'Papa', type: 'Scatter Cushion' },
-  { id: randomId(), name: 'Neuf', type: 'Side Table' }
-]
 
 interface IText {
   text: string
   links: string[]
+}
+export const products: IProduct = {
+  vprlp4: { name: 'Cherry', type: 'Sofa', large: true },
+  blp8pl: { name: 'Figura', type: 'Dining Chair' },
+  e3cpag: { name: 'Inlay', type: 'Dining Chair' },
+  e99n3o: { name: 'Bourbon', type: 'Desk' },
+  jfd8kg: { name: 'Copal', type: 'Sofa', large: true },
+  jlbc0o: { name: 'Kitsune', type: 'Armchair' },
+  junck8: { name: 'Kile', type: 'Coffee Table', large: true },
+  k2650o: { name: 'Mooli', type: 'Coffee Table' },
+  limd1o: { name: 'Com', type: 'Dining Chair' },
+  mgueu2: { name: 'Portobello', type: 'Sofa (wood base)', large: true },
+  rah0no: { name: 'Papa', type: 'Scatter Cushion' },
+  saf448: { name: 'Neuf', type: 'Side Table' }
 }
 
 export const heroText: IText[] = [

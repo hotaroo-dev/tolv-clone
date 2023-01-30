@@ -6,9 +6,9 @@ import { products } from '../products'
 const ProductDisplay: React.FC = () => {
   return (
     <div className="products">
-      {products.map((product, idx) => (
+      {Object.entries(products).map(([key, product], idx) => (
         <div key={idx} className={`product${product.large ? ' large' : ''}`}>
-          <Link to={`/products/${product.id}`} state={{ name: product.name }}>
+          <Link to={`/products/${key}`} state={{ name: product.name }}>
             <div
               className="image"
               style={{ backgroundImage: `url(./products/product${idx}.jpg)` }}
