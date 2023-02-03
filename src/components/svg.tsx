@@ -1,4 +1,4 @@
-export const Search = () => (
+const Search = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.688 22.478">
     <g id="loope" transform="translate(-847.113 872.495) rotate(-45)">
       <g
@@ -26,7 +26,7 @@ export const Search = () => (
   </svg>
 )
 
-export const Exit = () => (
+const Exit = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.707 30.705">
     <path
       id="close"
@@ -41,7 +41,7 @@ export const Exit = () => (
   </svg>
 )
 
-export const Arrow = () => (
+const Arrow = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="63.399"
@@ -79,3 +79,5 @@ export const Arrow = () => (
     </g>
   </svg>
 )
+
+export { Search, Exit, Arrow }

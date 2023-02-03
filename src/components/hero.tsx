@@ -10,7 +10,7 @@ const tween = {
 
 export const spring = {
   type: 'spring',
-  stiffness: 100,
+  stiffness: 120,
   damping: 20
 }
 

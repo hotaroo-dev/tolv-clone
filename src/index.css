@@ -193,7 +193,7 @@ body {
   }
 
   .products > .product {
-    @apply aspect-square relative;
+    @apply aspect-square relative overflow-hidden;
   }
 
   .products > .product:nth-child(5).large {
