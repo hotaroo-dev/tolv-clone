@@ -5,6 +5,7 @@ import Products from './routes/products'
 import Product from './routes/product'
 import Stockists from './routes/stockists'
 import About from './routes/about'
+import Login from './routes/login'
 import { AnimatePresence } from 'framer-motion'
 
 const Router: React.FC = () => {
@@ -18,6 +19,7 @@ const Router: React.FC = () => {
         <Route path="/products" element={<Products />} />
         <Route path="/stockists" element={<Stockists />} />
         <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </AnimatePresence>
   )

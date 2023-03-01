@@ -1,10 +1,10 @@
 import React from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { containerVariants } from '../routes'
-import { imageDelay, rows, textDelay } from './hero'
-import { heroText } from '../products'
+import { imageDelay, opacityVariants, textDelay } from '../global'
+import HeroText from './hero-text'
 
 const offset = window.innerHeight
+const rows = [...Array(3)]
 
 const HeroLarge: React.FC = () => {
   const { scrollY } = useScroll()
@@ -25,13 +25,13 @@ const HeroLarge: React.FC = () => {
     <div className="hero-large">
       <motion.div
         className="image-column"
-        variants={containerVariants}
+        variants={opacityVariants}
         transition={imageDelay}
       >
         {rows.map((_, idx) => (
           <div
             key={idx}
-            className="image"
+            className="bg-image"
             style={{ backgroundImage: `url(./bg${idx + 1}.jpg)` }}
           ></div>
         ))}
@@ -39,34 +39,12 @@ const HeroLarge: React.FC = () => {
 
       <motion.div
         className="text-column"
-        variants={containerVariants}
+        variants={opacityVariants}
         transition={textDelay}
       >
         {rows.map((_, idx) => (
           <div key={idx} className="text-slide">
-            <motion.div
-              className="text-wrapper"
-              style={{ opacity: opacity[idx] }}
-            >
-              <h2 className="text-style mb-6">{heroText[idx].text}</h2>
-              <h6 className="links">
-                Featuring{' '}
-                {heroText[idx].links.map((link, i) => {
-                  const sep =
-                    i === heroText[idx].links.length - 1
-                      ? ''
-                      : i === heroText[idx].links.length - 2
-                      ? ' and '
-                      : ', '
-                  return (
-                    <label key={i}>
-                      <a href="#">{link}</a>
-                      {sep}
-                    </label>
-                  )
-                })}
-              </h6>
-            </motion.div>
+            <HeroText idx={idx} opacity={opacity} />
           </div>
         ))}
       </motion.div>

@@ -1,9 +1,8 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { containerVariants } from '.'
+import { imageDelay, opacityVariants } from '../global'
 import ProductDisplay from '../components/productDisplay'
-import { imageDelay } from '../components/hero'
 
 const Products: React.FC = () => {
   return (
@@ -13,7 +12,7 @@ const Products: React.FC = () => {
       </Helmet>
       <motion.section
         className="pt-14"
-        variants={containerVariants}
+        variants={opacityVariants}
         initial="hidden"
         animate="visible"
         exit="exit"

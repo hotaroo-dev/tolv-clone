@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Yrsa:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Yrsa:wght@300;400;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Yrsa', serif;
-  color: #181818;
+  color: #202020;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -15,11 +15,11 @@ body {
 
 @layer base {
   header {
-    @apply fixed top-0 z-10 w-full;
+    @apply fixed top-0 z-20 w-full;
   }
 
   header .wrapper {
-    @apply max-w-7xl mx-auto flex items-center px-8 py-2;
+    @apply max-w-7xl mx-auto flex items-center px-12 py-2;
   }
 
   header .nav {
@@ -27,7 +27,7 @@ body {
   }
 
   header .mobile-nav {
-    @apply h-full w-full bg-white z-20 fixed top-0 right-0;
+    @apply h-screen w-full bg-white z-20 fixed top-0 right-0;
   }
 
   header .mobile-menu {
@@ -42,20 +42,16 @@ body {
     @apply text-3xl font-bold;
   }
 
-  header .mobile-menu .exit {
-    @apply w-5 h-5 absolute top-6 right-10 cursor-pointer;
-  }
-
-  header .mobile-menu .search {
+  header .search {
     @apply flex gap-4 items-center cursor-pointer;
   }
 
-  header .mobile-menu .search svg {
+  header .search svg {
     @apply w-8 h-8;
   }
 
   header .tabs {
-    @apply flex gap-7 items-center font-medium;
+    @apply flex gap-7 items-center;
   }
 
   header .tabs a {
@@ -83,19 +79,11 @@ body {
   }
 
   header .menu-bar {
-    @apply block md:hidden w-8 p-4 ml-auto relative cursor-pointer;
+    @apply flex flex-col justify-center gap-2 md:hidden w-8 h-8 ml-auto cursor-pointer;
   }
 
   header .line {
-    @apply inline-block w-8/12 h-[2px] bg-black absolute left-0 right-0 mx-auto;
-  }
-
-  .line:first-child {
-    @apply top-[35%] -translate-y-[35%];
-  }
-
-  .line:last-child {
-    @apply bottom-[30%] -translate-y-[30%];
+    @apply block w-6 h-[2px] mx-auto bg-[#202020];
   }
 }
 
@@ -113,11 +101,15 @@ body {
   }
 
   .text-wrapper .text-normal {
-    @apply font-normal text-3xl;
+    @apply font-normal text-3xl leading-[1.1];
+  }
+
+  .bg-image {
+    @apply bg-center bg-cover bg-no-repeat;
   }
 
   .image {
-    @apply bg-center bg-cover bg-no-repeat;
+    @apply h-full object-fill;
   }
 
   .links a {
@@ -130,11 +122,16 @@ body {
     @apply h-full;
   }
 
+  .hero > .image-column,
+  .hero > .text-column {
+    @apply h-full w-full;
+  }
+
   .hero-large {
     @apply hidden md:grid md:grid-cols-2;
   }
 
-  .hero-large .image {
+  .hero-large .bg-image {
     @apply h-screen;
   }
 
@@ -164,16 +161,16 @@ body {
     @apply font-bold;
   }
 
-  .hero-mobile .slide .image {
-    @apply h-[70vh];
+  .hero-mobile .slide .bg-image {
+    @apply h-[66vh];
   }
 
   .hero-mobile .slide .text-wrapper {
-    @apply w-[85%] py-10;
+    @apply w-[85%] h-full pt-10;
   }
 
   .hero-mobile .slide .text-style {
-    @apply text-2xl;
+    @apply text-2xl leading-tight;
   }
 
   .banner {
@@ -188,12 +185,8 @@ body {
     @apply py-[2px] grid grid-cols-2 gap-[2px] sm:grid-cols-3 md:grid-cols-4;
   }
 
-  .products .image {
-    @apply h-full;
-  }
-
   .products > .product {
-    @apply aspect-square relative overflow-hidden;
+    @apply aspect-auto relative overflow-hidden;
   }
 
   .products > .product:nth-child(5).large {
@@ -205,7 +198,7 @@ body {
   }
 
   .products > .product:hover .image {
-    @apply blur-2xl brightness-105 duration-300 ease-in-out;
+    @apply blur-[50px] brightness-105 duration-300 ease-in-out;
   }
 
   .products > .product:hover .product-info {
@@ -219,11 +212,15 @@ body {
   .product .product-info {
     @apply z-10 invisible opacity-0 absolute top-1/2 left-[44%] -translate-y-1/2 -translate-x-[44%] text-lg leading-tight;
   }
+
+  .exit {
+    @apply z-10 w-5 h-5 absolute top-5 right-12 cursor-pointer;
+  }
 }
 
 @layer utilities {
   .normal-text {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
   }
 }
