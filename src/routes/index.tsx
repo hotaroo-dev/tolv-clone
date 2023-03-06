@@ -5,6 +5,7 @@ import HeroLarge from '../components/hero-large'
 import HeroMobile from '../components/hero-mobile'
 import ProductDisplay from '../components/productDisplay'
 import { Link } from 'react-router-dom'
+import { opacityVariants } from '../global'
 
 const Index: React.FC = () => {
   return (
@@ -13,8 +14,7 @@ const Index: React.FC = () => {
         <title>Tolv</title>
       </Helmet>
       <motion.div
-        className="hero"
-        variants={undefined}
+        variants={opacityVariants}
         initial="hidden"
         animate="visible"
         exit="exit"

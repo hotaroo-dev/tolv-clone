@@ -7,27 +7,25 @@ import { tokenState, userState } from '../atom'
 import { formVariants } from '../global'
 import axiosClient from '../axios-client'
 
-const Login: React.FC = () => {
+const Signup: React.FC = () => {
   const setToken = useSetRecoilState(tokenState)
   const setUser = useSetRecoilState(userState)
   const [errors, setErrors] = useState(null)
 
-  const handleSignIn = async (event: React.FormEvent) => {
+  const handleSignup = async (event: React.FormEvent) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget as HTMLFormElement)
     const payload = Object.fromEntries(formData)
 
     setErrors(null)
     try {
-      const { data } = await axiosClient.post('/login', payload)
+      const { data } = await axiosClient.post('/signup', payload)
       setToken(data.token)
       setUser(data.user)
     } catch (err) {
       const { response } = err
       if (response && response.status === 422) {
-        response.data.errors
-          ? setErrors(response.data.errors)
-          : setErrors({ message: [response.data.message] })
+        setErrors(response.data.errors)
       }
     }
   }
@@ -35,7 +33,7 @@ const Login: React.FC = () => {
   return (
     <main>
       <Helmet>
-        <title>Tolv - Sign in</title>
+        <title>Tolv - Sign up</title>
       </Helmet>
       <motion.div
         className="form"
@@ -45,7 +43,11 @@ const Login: React.FC = () => {
         exit="hidden"
         transition={{ type: 'tween', duration: 0.25 }}
       >
-        <form onSubmit={handleSignIn}>
+        <form onSubmit={handleSignup}>
+          <label>
+            <span>Username</span>
+            <input name="name" aria-label="User Name" type="text" />
+          </label>
           <label>
             <span>Email Address</span>
             <input name="email" aria-label="E-mail" type="email" />
@@ -55,12 +57,12 @@ const Login: React.FC = () => {
             <input name="password" aria-label="Password" type="password" />
           </label>
           <p>
-            <button>Sign in</button>
+            <button>Sign up</button>
           </p>
         </form>
 
         <p>
-          New to Tolv? <Link to="/signup">Create an account.</Link>
+          Already have an account? <Link to="/login">Sign in</Link>
         </p>
 
         <AnimatePresence>
@@ -82,4 +84,4 @@ const Login: React.FC = () => {
   )
 }
 
-export default Login
+export default Signup

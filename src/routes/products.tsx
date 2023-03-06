@@ -6,21 +6,19 @@ import ProductDisplay from '../components/productDisplay'
 
 const Products: React.FC = () => {
   return (
-    <>
+    <motion.section
+      className="pt-14"
+      variants={opacityVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      transition={imageDelay}
+    >
       <Helmet>
         <title>Tolv - Products</title>
       </Helmet>
-      <motion.section
-        className="pt-14"
-        variants={opacityVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        transition={imageDelay}
-      >
-        <ProductDisplay />
-      </motion.section>
-    </>
+      <ProductDisplay />
+    </motion.section>
   )
 }
 

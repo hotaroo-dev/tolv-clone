@@ -1,6 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
+import { opacityVariants } from '../global'
 
 const Stockists: React.FC = () => {
   return (
@@ -8,7 +9,12 @@ const Stockists: React.FC = () => {
       <Helmet>
         <title>Tolv - Stockists</title>
       </Helmet>
-      <motion.div></motion.div>
+      <motion.div
+        variants={opacityVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      ></motion.div>
     </>
   )
 }

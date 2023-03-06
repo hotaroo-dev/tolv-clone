@@ -1,15 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { HashRouter } from 'react-router-dom'
-import App from './app'
+import { RecoilRoot } from 'recoil'
+import { BrowserRouter } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
+import Router from './router'
 import ScrollToTop from './scrollToTop'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <HashRouter>
-      <ScrollToTop />
-      <App />
-    </HashRouter>
+    <HelmetProvider>
+      <RecoilRoot>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Router />
+        </BrowserRouter>
+      </RecoilRoot>
+    </HelmetProvider>
   </React.StrictMode>
 )

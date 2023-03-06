@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import { Exit, Search } from './svg'
-import { useRecoilValue } from 'recoil'
-import { measurementState } from '../atom'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { userState, measurementState, tokenState } from '../atom'
 import { spring } from '../global'
+import axiosClient from '../axios-client'
 
 const Header: React.FC = () => {
+  const [user, setUser] = useRecoilState(userState)
+  const setToken = useSetRecoilState(tokenState)
   const showMeasurement = useRecoilValue(measurementState)
   const [openMenu, setOpenMenu] = useState(false)
   const { pathname } = useLocation()
@@ -16,7 +19,17 @@ const Header: React.FC = () => {
     [0, 40],
     ['rgba(250, 250, 250, 0)', 'rgba(255, 255, 255, 1)']
   )
-  const boxShadow = useTransform(scrollY, [0, 20], ['none', '0 5px 10px #0003'])
+  const boxShadow = useTransform(
+    scrollY,
+    [10, 20],
+    ['none', '0 5px 10px #0003']
+  )
+
+  const handleLogout = async () => {
+    await axiosClient.post('/logout')
+    setUser(null)
+    setToken(null)
+  }
 
   const toggleMenu = () => {
     setOpenMenu(prev => !prev)
@@ -69,8 +82,23 @@ const Header: React.FC = () => {
           </ul>
         </nav>
 
+        <div className="logo">
+          <Link to="/">
+            T<span>o</span>lv
+          </Link>
+        </div>
+
+        <Link to="/search" className="search">
+          <Search />
+        </Link>
+
+        <div className="menu-bar" onClick={() => setOpenMenu(true)}>
+          <span className="line"></span>
+          <span className="line"></span>
+        </div>
+
         <AnimatePresence>
-          {openMenu ? (
+          {openMenu && (
             <motion.div
               className="mobile-nav"
               variants={menuVariants}
@@ -100,31 +128,26 @@ const Header: React.FC = () => {
                 <div className="exit" onClick={toggleMenu}>
                   <Exit />
                 </div>
-                <div className="search">
+                <Link to="/search" className="search mb-6">
                   <Search />
                   <span className="text-lg font-sans">
                     Search anything here
                   </span>
-                </div>
+                </Link>
+
+                {user ? (
+                  <button className="button" onClick={handleLogout}>
+                    Logout
+                  </button>
+                ) : (
+                  <Link to="/login" onClick={toggleMenu}>
+                    <button className="button">Login</button>
+                  </Link>
+                )}
               </nav>
             </motion.div>
-          ) : null}
+          )}
         </AnimatePresence>
-
-        <div className="logo">
-          <Link to="/">
-            T<span>o</span>lv
-          </Link>
-        </div>
-
-        <div className="search">
-          <Search />
-        </div>
-
-        <div className="menu-bar" onClick={() => setOpenMenu(true)}>
-          <span className="line"></span>
-          <span className="line"></span>
-        </div>
       </div>
     </motion.header>
   )
@@ -132,7 +155,7 @@ const Header: React.FC = () => {
 
 const headerVariants = {
   hidden: { y: '-100%' },
-  visible: { y: 0 }
+  visible: { y: 0, transition: { ...spring, delay: 0.25 } }
 }
 
 const menuVariants = {

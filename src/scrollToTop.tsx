@@ -1,8 +1,11 @@
 import React, { useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import { measurementState } from './atom'
 
 const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation()
+  const setShowMeasurement = useSetRecoilState(measurementState)
+  const { key } = useLocation()
 
   useLayoutEffect(() => {
     const scrollRestoration = 'scrollRestoration' in window.history
@@ -11,7 +14,11 @@ const ScrollToTop: React.FC = () => {
     }
 
     window.scrollTo(0, 0)
-  }, [pathname])
+
+    return () => {
+      setShowMeasurement(false)
+    }
+  }, [key])
 
   return null
 }
