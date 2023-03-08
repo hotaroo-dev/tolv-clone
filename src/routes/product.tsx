@@ -30,7 +30,7 @@ const Product: React.FC = () => {
   }, [showMeasurement, openCard])
 
   useLayoutEffect(() => {
-    if (window.innerWidth <= 640) {
+    if (window.innerWidth < 768) {
       document.body.style.overflow = 'auto'
       return
     }
@@ -56,7 +56,7 @@ const Product: React.FC = () => {
           <motion.div
             variants={
               openCard
-                ? window.innerWidth > 640
+                ? window.innerWidth >= 768
                   ? blurVariants
                   : displayNone
                 : display

@@ -15,6 +15,15 @@ interface IProduct {
   large?: boolean
 }
 
+export interface ICart {
+  productId: string
+  src: string
+  type: productType
+  price: number
+  count?: number
+  square?: boolean
+}
+
 export interface IProductDetail {
   name: string
   type: productType
@@ -533,7 +542,7 @@ const heroText: IText[] = [
 const getProducts = (q: string) => {
   return q === ''
     ? []
-    : products.filter(product => product.name.toLowerCase().includes(q))
+    : products.filter(product => product.name.includes(q.toLowerCase()))
 }
 
 export { products, productDetail, heroText, getProducts }

@@ -8,13 +8,13 @@ import { getProducts } from '../products'
 const SearchedProducts: React.FC = () => {
   const location = useLocation()
   const q = new URLSearchParams(location.search).get('q') as string
-  const products = getProducts(q)
+  const products = getProducts(q || '')
 
   return (
     <AnimatePresence>
       <motion.div
         key={q}
-        className="search-products"
+        className="search-screen"
         variants={opacityVariants}
         initial="hidden"
         animate="visible"
@@ -52,22 +52,22 @@ const SearchedProducts: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-[#eae9e5] md:col-start-2 min-h-[25vh] md:min-h-screen px-8 md:px-[12.5vw] pt-20 md:flex flex-col justify-center">
+        <div className="bg-[#eae9e5] md:col-start-2 min-h-[25vh] md:min-h-screen px-8 md:px-[12.5vw] pt-20 md:pt-16 md:flex flex-col justify-center">
           <p className="font-bold text-xl md:text-sm normal-text mb-12">
             {products.length
               ? `We found ${products.length} posts`
               : 'Sorry, there were no results.'}
           </p>
           {products.length ? (
-            <div className="mb-20 space-y-16">
+            <div className="mb-16 space-y-16 search-products">
               {products.map(product => (
                 <Link
                   to={`/products/${product.id}`}
                   key={product.id}
-                  className="block thumbnail"
+                  className="thumbnail"
                 >
                   <div
-                    className="bg-image mb-4"
+                    className="bg-image mb-4 rounded-sm"
                     style={{
                       backgroundImage: `url(./products/${product.id}/${product.id}.jpg)`
                     }}

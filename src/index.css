@@ -63,7 +63,11 @@ body {
   }
 
   header .wrapper > .buttons {
-    @apply hidden flex-1 md:flex justify-end cursor-pointer;
+    @apply flex-1 flex gap-6 justify-end cursor-pointer;
+  }
+
+  header .wrapper > .buttons a {
+    @apply hidden md:block;
   }
 
   header .wrapper > .buttons svg {
@@ -71,7 +75,7 @@ body {
   }
 
   header .menu-bar {
-    @apply flex flex-col justify-center gap-2 md:hidden w-8 h-8 ml-auto cursor-pointer;
+    @apply flex flex-col justify-center gap-2 md:hidden w-8 h-8 ml-5 cursor-pointer;
   }
 
   header .line {
@@ -313,8 +317,12 @@ body {
     @apply w-80 mt-4 py-2 px-5 text-red-600 bg-red-200 border border-red-500 rounded-md;
   }
 
-  .search-products {
+  .search-screen {
     @apply absolute top-0 h-auto w-full grid md:grid-cols-2;
+  }
+
+  .search-products > a {
+    @apply block;
   }
 
   .products-form {
@@ -327,6 +335,10 @@ body {
 
   .products-form svg {
     @apply w-10 h-10 md:w-6 md:h-6;
+  }
+
+  .carts {
+    @apply z-10 fixed top-14 right-0 sm:max-w-sm p-4 bg-white shadow-cart rounded-[5px] origin-top-right;
   }
 }
 
@@ -345,12 +357,31 @@ body {
     aspect-ratio: 3 / 2;
   }
 
+  .search-products > .thumbnail {
+    aspect-ratio: 10 / 7;
+  }
+
   .thumbnail.square {
     aspect-ratio: 5 / 4;
   }
 
   .products-form > button {
     margin-top: 0 !important;
+  }
+
+  .carts-size {
+    margin-inline: 2rem;
+    width: calc(100% - 4rem);
+  }
+
+  p.total::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -1em;
+    left: -1em;
+    height: 1px;
+    background-color: rgb(210, 220, 220);
   }
 
   @media screen and (max-width: 860px) {

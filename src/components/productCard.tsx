@@ -1,18 +1,25 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { IProductDetail } from '../products'
+import { ICart, IProductDetail } from '../products'
 import { opacityVariants, spring } from '../global'
 import { Exit } from './svg'
+import { useSetRecoilState } from 'recoil'
+import { cartsState } from '../atom'
 
 const ProductCard: React.FC<{
   product: IProductDetail
   productId: string
   setOpenCard: React.Dispatch<React.SetStateAction<boolean>>
 }> = ({ product, productId, setOpenCard }) => {
+  const setCarts = useSetRecoilState(cartsState)
+
+  const addToCart = (cart: ICart) => {
+    setCarts(carts => [...carts, { ...cart, count: 1 }])
+  }
+
   return (
     <motion.div
-      className="z-20 w-full h-auto min-h-full md:min-h-fit md:w-[70%] font-sans absolute top-0 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 bg-white py-10 md:py-8 px-8 md:px-16"
-      style={{ boxShadow: '0px 5px 10px 0px rgb(0 0 0 / 25%)' }}
+      className="z-20 min-h-full md:min-h-fit md:w-[70%] font-sans shadow-card absolute top-0 md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 bg-white py-10 md:py-8 px-8 md:px-16"
       variants={opacityVariants}
       initial="hidden"
       animate="visible"
@@ -35,7 +42,17 @@ const ProductCard: React.FC<{
                     </h3>
                     <p>${card.price}</p>
                   </div>
-                  <button className="flex items-center px-4 p-2 bg-black text-white rounded-sm">
+                  <button
+                    className="flex items-center px-4 p-2 bg-black text-white rounded-sm"
+                    onClick={() =>
+                      addToCart({
+                        ...card,
+                        productId,
+                        type: product.type,
+                        square: product.square
+                      })
+                    }
+                  >
                     <p className="text-base leading-none">Add</p>
                   </button>
                 </div>

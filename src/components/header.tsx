@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
-import { Exit, Search } from './svg'
+import { Cart, Exit, Search } from './svg'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { userState, measurementState, tokenState, cardState } from '../atom'
 import { spring } from '../global'
 import axiosClient from '../helpers/axios-client'
 
-const Header: React.FC = () => {
+const Header: React.FC<{ toggleCart: () => void }> = ({ toggleCart }) => {
   const [user, setUser] = useRecoilState(userState)
   const setToken = useSetRecoilState(tokenState)
   const showMeasurement = useRecoilValue(measurementState)
@@ -51,7 +51,7 @@ const Header: React.FC = () => {
       variants={headerVariants}
       initial={false}
       animate={
-        showMeasurement || (openCard && window.innerWidth <= 640)
+        showMeasurement || (openCard && window.innerWidth < 768)
           ? 'hidden'
           : 'visible'
       }
@@ -95,9 +95,12 @@ const Header: React.FC = () => {
         </div>
 
         <div className="buttons">
-          <Link to="/search">
+          <Link to="/search" className="-translate-y-[1px]">
             <Search />
           </Link>
+          <button onClick={toggleCart}>
+            <Cart />
+          </button>
         </div>
 
         <div className="menu-bar" onClick={() => setOpenMenu(true)}>

@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { AnimatePresence, motion } from 'framer-motion'
 import Header from '../components/header'
+import Carts from '../components/carts'
 import ScrollToTop from '../helpers/scrollToTop'
 import AnimatedOutlet from '../helpers/animatedOutlet'
 import axiosClient from '../helpers/axios-client'
@@ -10,6 +11,7 @@ import { tokenState, userState } from '../atom'
 import { opacityVariants } from '../global'
 
 const Root: React.FC = () => {
+  const [openCart, setOpenCart] = useState(false)
   const location = useLocation()
   const token = useRecoilValue(tokenState)
   const setUser = useSetRecoilState(userState)
@@ -23,13 +25,16 @@ const Root: React.FC = () => {
     })()
   }, [])
 
+  const toggleCart = () => {
+    setOpenCart(prev => !prev)
+  }
+
   return (
     <>
-      <Header />
+      <Header toggleCart={toggleCart} />
       <ScrollToTop />
       <AnimatePresence mode="wait">
         <motion.main
-          className="z-50"
           key={location.pathname}
           variants={opacityVariants}
           initial="hidden"
@@ -39,6 +44,7 @@ const Root: React.FC = () => {
           <AnimatedOutlet />
         </motion.main>
       </AnimatePresence>
+      <Carts openCart={openCart} />
     </>
   )
 }
