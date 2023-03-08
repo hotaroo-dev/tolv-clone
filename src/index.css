@@ -62,11 +62,11 @@ body {
     @apply underline;
   }
 
-  header .wrapper > .search {
+  header .wrapper > .buttons {
     @apply hidden flex-1 md:flex justify-end cursor-pointer;
   }
 
-  header .wrapper > .search svg {
+  header .wrapper > .buttons svg {
     @apply w-6 h-6;
   }
 

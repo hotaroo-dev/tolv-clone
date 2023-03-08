@@ -6,7 +6,7 @@ import ProductDisplay from '../components/productDisplay'
 
 const Products: React.FC = () => {
   return (
-    <motion.section
+    <motion.div
       className="pt-14"
       variants={opacityVariants}
       initial="hidden"
@@ -18,7 +18,7 @@ const Products: React.FC = () => {
         <title>Tolv - Products</title>
       </Helmet>
       <ProductDisplay />
-    </motion.section>
+    </motion.div>
   )
 }
 

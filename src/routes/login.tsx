@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useSetRecoilState } from 'recoil'
 import { tokenState, userState } from '../atom'
-import { formVariants } from '../global'
-import axiosClient from '../axios-client'
+import axiosClient from '../helpers/axios-client'
 
 const Login: React.FC = () => {
   const setToken = useSetRecoilState(tokenState)
@@ -36,18 +35,12 @@ const Login: React.FC = () => {
   }
 
   return (
-    <main>
+    <>
       <Helmet>
         <title>Tolv - Sign in</title>
       </Helmet>
-      <motion.div
-        className="form"
-        variants={formVariants}
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        transition={{ type: 'tween', duration: 0.25 }}
-      >
+
+      <div className="form">
         <form onSubmit={handleSignIn}>
           <label>
             <span>Email Address</span>
@@ -80,8 +73,8 @@ const Login: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.div>
-    </main>
+      </div>
+    </>
   )
 }
 

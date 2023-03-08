@@ -3,14 +3,15 @@ import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import { Exit, Search } from './svg'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import { userState, measurementState, tokenState } from '../atom'
+import { userState, measurementState, tokenState, cardState } from '../atom'
 import { spring } from '../global'
-import axiosClient from '../axios-client'
+import axiosClient from '../helpers/axios-client'
 
 const Header: React.FC = () => {
   const [user, setUser] = useRecoilState(userState)
   const setToken = useSetRecoilState(tokenState)
   const showMeasurement = useRecoilValue(measurementState)
+  const openCard = useRecoilValue(cardState)
   const [openMenu, setOpenMenu] = useState(false)
   const { pathname } = useLocation()
   const { scrollY } = useScroll()
@@ -29,6 +30,7 @@ const Header: React.FC = () => {
     await axiosClient.post('/logout')
     setUser(null)
     setToken(null)
+    toggleMenu()
   }
 
   const toggleMenu = () => {
@@ -48,7 +50,11 @@ const Header: React.FC = () => {
     <motion.header
       variants={headerVariants}
       initial={false}
-      animate={showMeasurement ? 'hidden' : 'visible'}
+      animate={
+        showMeasurement || (openCard && window.innerWidth <= 640)
+          ? 'hidden'
+          : 'visible'
+      }
       transition={spring}
       style={{ backgroundColor, boxShadow }}
     >
@@ -88,9 +94,11 @@ const Header: React.FC = () => {
           </Link>
         </div>
 
-        <Link to="/search" className="search">
-          <Search />
-        </Link>
+        <div className="buttons">
+          <Link to="/search">
+            <Search />
+          </Link>
+        </div>
 
         <div className="menu-bar" onClick={() => setOpenMenu(true)}>
           <span className="line"></span>
@@ -128,7 +136,7 @@ const Header: React.FC = () => {
                 <div className="exit" onClick={toggleMenu}>
                   <Exit />
                 </div>
-                <Link to="/search" className="search mb-6">
+                <Link to="/search" className="search mb-6" onClick={toggleMenu}>
                   <Search />
                   <span className="text-lg font-sans">
                     Search anything here

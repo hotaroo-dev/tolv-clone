@@ -1,9 +1,10 @@
 import React, { useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
-import { measurementState } from './atom'
+import { cardState, measurementState } from '../atom'
 
 const ScrollToTop: React.FC = () => {
+  const setOpenCard = useSetRecoilState(cardState)
   const setShowMeasurement = useSetRecoilState(measurementState)
   const { key } = useLocation()
 
@@ -16,6 +17,7 @@ const ScrollToTop: React.FC = () => {
     window.scrollTo(0, 0)
 
     return () => {
+      setOpenCard(false)
       setShowMeasurement(false)
     }
   }, [key])

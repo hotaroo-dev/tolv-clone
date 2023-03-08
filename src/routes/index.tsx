@@ -1,27 +1,20 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
 import HeroLarge from '../components/hero-large'
 import HeroMobile from '../components/hero-mobile'
 import ProductDisplay from '../components/productDisplay'
 import { Link } from 'react-router-dom'
-import { opacityVariants } from '../global'
 
 const Index: React.FC = () => {
   return (
-    <main>
+    <>
       <Helmet>
         <title>Tolv</title>
       </Helmet>
-      <motion.div
-        variants={opacityVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-      >
+      <div>
         <HeroLarge />
         <HeroMobile />
-      </motion.div>
+      </div>
       <div className="banner">
         <div className="text-wrapper">
           <h2 className="text-style mb-4">Time for Living</h2>
@@ -40,7 +33,7 @@ const Index: React.FC = () => {
         </div>
       </div>
       <ProductDisplay />
-    </main>
+    </>
   )
 }
 

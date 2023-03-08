@@ -5,6 +5,11 @@ export const measurementState = atom({
   default: false
 })
 
+export const cardState = atom({
+  key: 'cardState',
+  default: false
+})
+
 export const tokenState = atom({
   key: 'tokenState',
   default: localStorage.getItem('ACCESS_TOKEN')

@@ -58,7 +58,7 @@ const id = [
   'neuf-side-table'
 ]
 
-export const products: IProduct[] = [
+const products: IProduct[] = [
   { id: id[0], name: 'Cherry', type: 'Sofa', large: true },
   { id: id[1], name: 'Figura', type: 'Dining Chair' },
   { id: id[2], name: 'Inlay', type: 'Dining Chair' },
@@ -73,7 +73,7 @@ export const products: IProduct[] = [
   { id: id[11], name: 'Neuf', type: 'Side Table' }
 ]
 
-export const productDetail: IProductDetails = {
+const productDetail: IProductDetails = {
   [id[0]]: {
     name: 'Cherry',
     type: 'Sofa',
@@ -515,7 +515,7 @@ export const productDetail: IProductDetails = {
   }
 }
 
-export const heroText: IText[] = [
+const heroText: IText[] = [
   {
     text: 'Eyes rest from an afternoon in the sun. Smooth textures feel cool on bare feet and skin.',
     links: ['Kitsune sofa', 'armchair', 'I-O coffee table (steel base)']
@@ -529,3 +529,11 @@ export const heroText: IText[] = [
     links: ['Copal', 'Fromage']
   }
 ]
+
+const getProducts = (q: string) => {
+  return q === ''
+    ? []
+    : products.filter(product => product.name.toLowerCase().includes(q))
+}
+
+export { products, productDetail, heroText, getProducts }
