@@ -15,20 +15,27 @@ interface IProduct {
   large?: boolean
 }
 
-interface IProductDetail {
-  [key: string]: {
-    name: string
-    type: productType
-    designer: string
-    description: string[]
-    color: string
-    panels: {
-      src: string[]
-      captions?: string[]
-      space?: boolean
-      large?: boolean
-    }[]
-  }
+export interface IProductDetail {
+  name: string
+  type: productType
+  designer: string
+  description: string[]
+  color: string
+  panels: {
+    src: string[]
+    captions?: string[]
+    space?: boolean
+    large?: boolean
+  }[]
+  cards?: {
+    src: string
+    price: number
+  }[]
+  square?: boolean
+}
+
+interface IProductDetails {
+  [key: string]: IProductDetail
 }
 
 interface IText {
@@ -66,7 +73,7 @@ export const products: IProduct[] = [
   { id: id[11], name: 'Neuf', type: 'Side Table' }
 ]
 
-export const productDetail: IProductDetail = {
+export const productDetail: IProductDetails = {
   [id[0]]: {
     name: 'Cherry',
     type: 'Sofa',
@@ -97,6 +104,12 @@ export const productDetail: IProductDetail = {
       },
       { src: ['cherry-detail'], space: true },
       { src: ['cherry-chaise-lookbook'] }
+    ],
+    cards: [
+      { src: 'cherry-2-seater', price: 100 },
+      { src: 'cherry-3-seater-teal', price: 120 },
+      { src: 'cherry-chaise', price: 145 },
+      { src: 'cherry-3-seater-oyster', price: 125 }
     ]
   },
   [id[1]]: {
@@ -109,7 +122,7 @@ export const productDetail: IProductDetail = {
     ],
     panels: [
       {
-        src: ['figura-black-oak'],
+        src: ['figura-all-colors'],
         captions: ['Figura chair in black oak, walnut and light oak']
       },
       {
@@ -124,10 +137,15 @@ export const productDetail: IProductDetail = {
       },
       {
         src: ['itamae-black-oak'],
-        captions: ['Figura dining chairs and Itamae table in black oak'],
-        space: true
+        captions: ['Figura dining chairs and Itamae table in black oak']
       }
-    ]
+    ],
+    cards: [
+      { src: 'figura-chair', price: 80 },
+      { src: 'figura-light-oak', price: 80 },
+      { src: 'figura-walnut', price: 100 }
+    ],
+    square: true
   },
   [id[2]]: {
     name: 'Inlay',
@@ -153,7 +171,12 @@ export const productDetail: IProductDetail = {
       },
       { src: ['inlay-lookbook'], space: true },
       { src: ['inlay-detail'] }
-    ]
+    ],
+    cards: [
+      { src: 'inlay-chair', price: 120 },
+      { src: 'inlay-black-oak', price: 120 }
+    ],
+    square: true
   },
   [id[3]]: {
     name: 'Bourbon',
@@ -173,10 +196,15 @@ export const productDetail: IProductDetail = {
         space: true
       },
       {
-        src: ['bourbon-and-figura'],
+        src: ['bourbon-and-figura-walnut'],
         captions: ['Bourbon desk in oak finish and Figura chair in walnut']
       }
-    ]
+    ],
+    cards: [
+      { src: 'bourbon-desk', price: 180 },
+      { src: 'bourbon-and-figura-walnut', price: 260 }
+    ],
+    square: true
   },
   [id[4]]: {
     name: 'Copal',
@@ -210,6 +238,11 @@ export const productDetail: IProductDetail = {
         space: true
       },
       { src: ['copal-detail'] }
+    ],
+    cards: [
+      { src: 'copal-sofa', price: 240 },
+      { src: 'copal-2-seater', price: 160 },
+      { src: 'copal-3-seater', price: 260 }
     ]
   },
   [id[5]]: {
@@ -233,7 +266,12 @@ export const productDetail: IProductDetail = {
         space: true
       },
       { src: ['kitsune-detail'], space: true }
-    ]
+    ],
+    cards: [
+      { src: 'kitsune-armchair', price: 120 },
+      { src: 'kitsune-leather', price: 160 }
+    ],
+    square: true
   },
   [id[6]]: {
     name: 'Kile',
@@ -265,7 +303,13 @@ export const productDetail: IProductDetail = {
         space: true
       },
       { src: ['kile-detail'] }
-    ]
+    ],
+    cards: [
+      { src: 'kile-low-90-light', price: 30 },
+      { src: 'kile-low-60-black', price: 30 },
+      { src: 'kile-tall-50-light', price: 40 }
+    ],
+    square: true
   },
   [id[7]]: {
     name: 'Pensive',
@@ -298,7 +342,12 @@ export const productDetail: IProductDetail = {
         src: ['pensive-black-oak-leather-detail'],
         space: true
       }
-    ]
+    ],
+    cards: [
+      { src: 'pensive-light-oak', price: 160 },
+      { src: 'pensive-black-oak-leather', price: 200 }
+    ],
+    square: true
   },
   [id[8]]: {
     name: 'Com',
@@ -319,7 +368,12 @@ export const productDetail: IProductDetail = {
       },
       { src: ['com-detail'] },
       { src: ['com-lookbook'], space: true }
-    ]
+    ],
+    cards: [
+      { src: 'com-dining-chair', price: 50 },
+      { src: 'com-light-oak', price: 50 }
+    ],
+    square: true
   },
   [id[9]]: {
     name: 'Portobello',
@@ -357,6 +411,10 @@ export const productDetail: IProductDetail = {
         src: ['portobello-light-oak-back'],
         captions: ['Back detail of wooden base']
       }
+    ],
+    cards: [
+      { src: 'portobello-light-oak', price: 200 },
+      { src: 'portobello-black-oak', price: 200 }
     ]
   },
   [id[10]]: {
@@ -413,6 +471,14 @@ export const productDetail: IProductDetail = {
         captions: ['Papa monotone cushions with Pensive Sofa'],
         space: true
       }
+    ],
+    cards: [
+      { src: 'papa-500x500', price: 25 },
+      { src: 'papa-600x300', price: 30 },
+      { src: 'papa-350x350', price: 20 },
+      { src: 'papa-500x500-corten', price: 25 },
+      { src: 'papa-600x300-greengold', price: 30 },
+      { src: 'papa-350x350-dove', price: 20 }
     ]
   },
   [id[11]]: {
@@ -440,7 +506,12 @@ export const productDetail: IProductDetail = {
         captions: ['Light oak', 'Black oak'],
         space: true
       }
-    ]
+    ],
+    cards: [
+      { src: 'light-oak', price: 25 },
+      { src: 'black-oak', price: 25 }
+    ],
+    square: true
   }
 }
 

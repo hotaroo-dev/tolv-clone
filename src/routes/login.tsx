@@ -10,26 +10,29 @@ import axiosClient from '../axios-client'
 const Login: React.FC = () => {
   const setToken = useSetRecoilState(tokenState)
   const setUser = useSetRecoilState(userState)
-  const [errors, setErrors] = useState(null)
+  const [errors, setErrors] = useState<any>(null)
 
-  const handleSignIn = async (event: React.FormEvent) => {
+  const handleSignIn = (event: React.FormEvent) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget as HTMLFormElement)
     const payload = Object.fromEntries(formData)
 
     setErrors(null)
-    try {
-      const { data } = await axiosClient.post('/login', payload)
-      setToken(data.token)
-      setUser(data.user)
-    } catch (err) {
-      const { response } = err
-      if (response && response.status === 422) {
-        response.data.errors
-          ? setErrors(response.data.errors)
-          : setErrors({ message: [response.data.message] })
-      }
-    }
+
+    axiosClient
+      .post('/login', payload)
+      .then(({ data }) => {
+        setToken(data.token)
+        setUser(data.user)
+      })
+      .catch(err => {
+        const { response } = err
+        if (response && response.status === 422) {
+          response.data.errors
+            ? setErrors(response.data.errors)
+            : setErrors({ message: [response.data.message] })
+        }
+      })
   }
 
   return (

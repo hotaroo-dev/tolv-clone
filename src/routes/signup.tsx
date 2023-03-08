@@ -12,22 +12,25 @@ const Signup: React.FC = () => {
   const setUser = useSetRecoilState(userState)
   const [errors, setErrors] = useState(null)
 
-  const handleSignup = async (event: React.FormEvent) => {
+  const handleSignup = (event: React.FormEvent) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget as HTMLFormElement)
     const payload = Object.fromEntries(formData)
 
     setErrors(null)
-    try {
-      const { data } = await axiosClient.post('/signup', payload)
-      setToken(data.token)
-      setUser(data.user)
-    } catch (err) {
-      const { response } = err
-      if (response && response.status === 422) {
-        setErrors(response.data.errors)
-      }
-    }
+
+    axiosClient
+      .post('/signup', payload)
+      .then(({ data }) => {
+        setToken(data.token)
+        setUser(data.user)
+      })
+      .catch(err => {
+        const { response } = err
+        if (response && response.status === 422) {
+          setErrors(response.data.errors)
+        }
+      })
   }
 
   return (

@@ -52,7 +52,7 @@ const Header: React.FC = () => {
       transition={spring}
       style={{ backgroundColor, boxShadow }}
     >
-      <div className="wrapper">
+      <div className="wrapper spacing">
         <nav className="nav">
           <ul className="tabs normal-text">
             <li>

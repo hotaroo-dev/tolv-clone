@@ -15,11 +15,11 @@ body {
 
 @layer base {
   header {
-    @apply fixed top-0 z-40 w-full;
+    @apply fixed top-0 z-20 w-full;
   }
 
   header .wrapper {
-    @apply max-w-screen-xl mx-auto flex items-center px-12 md:px-16 lg:px-20 xl:px-8 py-2;
+    @apply max-w-screen-xl flex items-center py-2;
   }
 
   header .nav {
@@ -178,11 +178,11 @@ body {
   }
 
   .hero-mobile .slide .bg-image {
-    @apply h-[66vh];
+    @apply h-[68vh];
   }
 
   .hero-mobile .slide .text-wrapper {
-    @apply w-[85%] h-full pt-10;
+    @apply w-[85%] pt-10;
   }
 
   .hero-mobile .slide .text-style {
@@ -242,7 +242,15 @@ body {
   }
 
   .right-column .wrapper {
-    @apply px-12 md:px-14 lg:px-24 md:pt-10 lg:pt-20 flex-1;
+    @apply px-8 md:px-14 lg:px-24 md:pt-10 lg:pt-20 flex-1;
+  }
+
+  .right-column .button-wrapper {
+    @apply flex-1 text-2xl md:text-lg py-12 cursor-pointer bg-[rgba(248,248,248,.1)] md:bg-transparent md:hover:bg-[rgba(248,248,248,.4)] duration-300;
+  }
+
+  .button-wrapper h3 {
+    @apply font-bold text-center;
   }
 
   .wrapper .product-info {
@@ -266,7 +274,7 @@ body {
   }
 
   .spacing {
-    @apply max-w-screen-sm mx-auto px-12 md:px-16 lg:px-20 xl:px-16;
+    @apply max-w-[560px] mx-auto px-8 md:px-16 lg:px-20 xl:px-8;
   }
 
   .panels {
@@ -282,7 +290,7 @@ body {
   }
 
   .exit {
-    @apply z-10 w-5 h-5 absolute top-5 right-12 cursor-pointer;
+    @apply z-10 w-5 h-5 absolute top-5 right-8 cursor-pointer;
   }
 
   .form {
@@ -327,11 +335,33 @@ body {
     font-family: 'Montserrat', sans-serif;
   }
 
+  .thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem;
+  }
+
   .thumbnail {
     aspect-ratio: 3 / 2;
   }
 
-  .products-form > div {
+  .thumbnail.square {
+    aspect-ratio: 5 / 4;
+  }
+
+  .products-form > button {
     margin-top: 0 !important;
+  }
+
+  @media screen and (max-width: 860px) {
+    .thumbnail-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .thumbnail-grid {
+      grid-template-columns: 1fr;
+    }
   }
 }

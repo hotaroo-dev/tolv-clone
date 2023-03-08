@@ -35,42 +35,50 @@ const SearchedProducts: React.FC = () => {
               placeholder="Type anything"
               defaultValue={q}
               name="q"
+              onFocus={() => {
+                setTimeout(
+                  () => window.scrollTo({ top: 60, behavior: 'smooth' }),
+                  50
+                )
+              }}
             />
-            <div className="search-btn">
+            <button className="search-btn">
               <Search />
-            </div>
+            </button>
           </form>
         </div>
       </div>
 
-      <div className="bg-[#eae9e5] md:col-start-2 md:min-h-screen px-12 md:px-[12.5vw] py-20 md:flex flex-col justify-center">
+      <div className="bg-[#eae9e5] md:col-start-2 min-h-[25vh] md:min-h-screen px-8 md:px-[12.5vw] pt-20 md:flex flex-col justify-center">
         <p className="font-bold text-xl md:text-sm normal-text mb-12">
           {searchedProducts.length
             ? `We found ${searchedProducts.length} posts`
             : 'Sorry, there were no results.'}
         </p>
-        <div className="space-y-16">
-          {searchedProducts.map(product => (
-            <Link
-              to={`/products/${product.id}`}
-              key={product.id}
-              className="block thumbnail"
-            >
-              <div
-                className="bg-image mb-4"
-                style={{
-                  backgroundImage: `url(./products/${product.id}/${product.id}.jpg)`
-                }}
-              ></div>
-              <div className="space-y-4">
-                <h5 className="text-gray-700 text-2xl md:text-lg font-bold">
-                  {product.name} {product.type}
-                </h5>
-                <Arrow />
-              </div>
-            </Link>
-          ))}
-        </div>
+        {searchedProducts.length ? (
+          <div className="mb-20 space-y-16">
+            {searchedProducts.map(product => (
+              <Link
+                to={`/products/${product.id}`}
+                key={product.id}
+                className="block thumbnail"
+              >
+                <div
+                  className="bg-image mb-4"
+                  style={{
+                    backgroundImage: `url(./products/${product.id}/${product.id}.jpg)`
+                  }}
+                ></div>
+                <div className="space-y-4">
+                  <h5 className="text-gray-700 text-2xl md:text-lg font-bold">
+                    {product.name} {product.type}
+                  </h5>
+                  <Arrow />
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : null}
       </div>
     </motion.div>
   )

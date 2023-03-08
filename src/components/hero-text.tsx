@@ -17,7 +17,7 @@ const HeroText: React.FC<Props> = ({ idx, opacity, variants }) => {
       variants={variants}
       transition={textDelay}
     >
-      <h2 className="text-style mb-6">{heroText[idx].text}</h2>
+      <h2 className="text-style mb-5">{heroText[idx].text}</h2>
       <h6 className="links">
         Featuring{' '}
         {heroText[idx].links.map((link, i) => {

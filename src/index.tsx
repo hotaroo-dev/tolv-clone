@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <HelmetProvider>
       <RecoilRoot>
-        <BrowserRouter>
+        <BrowserRouter basename="/tolv-clone">
           <ScrollToTop />
           <Router />
         </BrowserRouter>
