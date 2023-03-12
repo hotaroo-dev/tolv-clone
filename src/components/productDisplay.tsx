@@ -16,7 +16,7 @@ const ProductDisplay: React.FC<{ offset?: number }> = ({ offset }) => {
           <div
             className="bg-image"
             style={{
-              backgroundImage: `url(./products/${product.id}/${product.id}.jpg)`
+              backgroundImage: `url(./${product.id}/${product.id}.jpg)`
             }}
           />
           <div className="product-info">

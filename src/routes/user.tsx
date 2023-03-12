@@ -31,7 +31,7 @@ const User: React.FC = () => {
             <img
               className="w-full rounded-full object-cover -translate-y-1"
               src={`https://api.dicebear.com/5.x/open-peeps/svg?seed=${
-                (user?.id || 0) + 12
+                Number(user?.id) + 12
               }`}
               alt="avatar"
             />

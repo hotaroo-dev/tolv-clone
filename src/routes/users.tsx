@@ -16,13 +16,13 @@ const Users: React.FC = () => {
     })()
   }, [])
 
-  const deleteUser = (id: number) => {
+  const deleteUser = (id: string) => {
     if (!confirm('Please confirm you want to delete this user')) {
       return
     }
     setUsers(users => users.filter(user => user.id !== id))
 
-    axiosClient.delete(`/users/${id}`).then()
+    axiosClient.delete(`/users/${id}`)
   }
 
   return (

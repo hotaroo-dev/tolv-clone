@@ -4,6 +4,16 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { cartsState, tokenState } from '../atom'
 import axiosClient from '../helpers/axios-client'
 
+interface ICart {
+  id: string
+  product_id: string
+  name: string
+  price: number
+  count?: number
+  updated_at: string
+  user_id: string
+}
+
 const Carts: React.FC<{ openCart: boolean }> = ({ openCart }) => {
   const { scrollY } = useScroll()
   const translateY = useTransform(scrollY, [0, 20], [0, 12])
@@ -16,13 +26,25 @@ const Carts: React.FC<{ openCart: boolean }> = ({ openCart }) => {
 
   const deleteCard = (name: string) => {
     setCarts(carts => carts.filter(cart => cart.name !== name))
+    axiosClient.delete('/cart', { data: { name: name } })
   }
 
   useEffect(() => {
     if (!token) return
     ;(async () => {
-      const response = await axiosClient.get('/cart')
-      console.log(response)
+      const {
+        data: { carts }
+      } = await axiosClient.get('/cart')
+      setCarts(
+        carts.map((cart: ICart) => {
+          return {
+            productId: cart.product_id,
+            name: cart.name,
+            price: cart.price,
+            count: cart.count
+          }
+        })
+      )
     })()
   }, [])
 
@@ -50,7 +72,7 @@ const Carts: React.FC<{ openCart: boolean }> = ({ openCart }) => {
               >
                 <img
                   className="w-32 h-28"
-                  src={`./${cart.productId}/${cart.name}.jpg`}
+                  src={`/${cart.productId}/${cart.name}.jpg`}
                   alt={cart.name}
                 />
                 <div className="flex-1 flex flex-col ml-4 mt-2">

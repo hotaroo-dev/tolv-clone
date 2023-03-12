@@ -16,19 +16,17 @@ const ProductCard: React.FC<{
   const user = useRecoilValue(userState)
 
   const addToCart = (cart: ICart) => {
-    if (user) {
-      axiosClient.post('/cart', { ...cart, id: user?.id }).then(response => {
-        console.log(response)
-      })
-    }
-
-    carts.some(c => c.name === cart.name)
-      ? setCarts(carts =>
-          carts.map(c =>
-            c.name === cart.name ? { ...c, count: (c.count || 0) + 1 } : c
-          )
+    if (carts.some(c => c.name === cart.name)) {
+      setCarts(carts =>
+        carts.map(c =>
+          c.name === cart.name ? { ...c, count: (c.count || 0) + 1 } : c
         )
-      : setCarts(carts => [...carts, { ...cart, count: 1 }])
+      )
+      user && axiosClient.put('/cart', { name: cart.name })
+    } else {
+      setCarts(carts => [...carts, { ...cart, count: 1 }])
+      user && axiosClient.post('/cart', { ...cart, id: user?.id })
+    }
   }
 
   return (
@@ -46,7 +44,7 @@ const ProductCard: React.FC<{
               <div key={idx}>
                 <img
                   className={`thumbnail${product.square ? ' square' : ''}`}
-                  src={`./${productId}/${card.name}.jpg`}
+                  src={`/${productId}/${card.name}.jpg`}
                   alt={card.name}
                 />
                 <div className="flex items-center mt-2">
