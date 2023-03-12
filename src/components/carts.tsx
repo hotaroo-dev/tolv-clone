@@ -18,7 +18,6 @@ const Carts: React.FC<{ openCart: boolean }> = ({ openCart }) => {
     setCarts(carts => carts.filter(cart => cart.name !== name))
   }
 
-  /*
   useEffect(() => {
     if (!token) return
     ;(async () => {
@@ -26,7 +25,6 @@ const Carts: React.FC<{ openCart: boolean }> = ({ openCart }) => {
       console.log(response)
     })()
   }, [])
-  */
 
   return (
     <motion.section

@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { IProductDetail } from '../products'
-import { opacityVariants, spring } from '../global'
+import { opacityVariants } from '../global'
 import { Exit } from './svg'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { cartsState, ICart, userState } from '../atom'
@@ -16,11 +16,11 @@ const ProductCard: React.FC<{
   const user = useRecoilValue(userState)
 
   const addToCart = (cart: ICart) => {
-    axiosClient
-      .post('/cart', { ...cart, count: 1, id: user?.id })
-      .then(data => {
-        console.log(data)
+    if (user) {
+      axiosClient.post('/cart', { ...cart, id: user?.id }).then(response => {
+        console.log(response)
       })
+    }
 
     carts.some(c => c.name === cart.name)
       ? setCarts(carts =>

@@ -39,9 +39,9 @@ const User: React.FC = () => {
           <div className="flex-1 mt-2">
             <h2 className="text-2xl font-semibold mb-[2px]">{user?.name}</h2>
             <p className="text-gray-500">{user?.email}</p>
-            <p className="text-gray-500 font-semibold uppercase">
-              {isAdmin ? 'admin' : 'user'}
-            </p>
+            {isAdmin && (
+              <p className="text-gray-500 font-semibold uppercase">admin</p>
+            )}
           </div>
         </div>
         <div className="flex gap-4 md:gap-8">
