@@ -29,7 +29,7 @@ const SearchedProducts: React.FC = () => {
             </p>
             <Form className="products-form">
               <input
-                className="w-full text-center text-blue-600 text-xl md:text-sm md:leading-[3] normal-text leading-[4] outline-none border-b border-black"
+                className="w-full text-center text-[#001dff] text-xl md:text-sm md:leading-[3] normal-text leading-[4] outline-none border-b border-black"
                 aria-label="Search products"
                 placeholder="Type anything"
                 defaultValue={q}
@@ -52,7 +52,7 @@ const SearchedProducts: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-[#eae9e5] md:col-start-2 min-h-[25vh] md:min-h-screen px-8 md:px-[12.5vw] pt-20 md:pt-16 md:flex flex-col justify-center">
+        <div className="bg-[#eae9e5] md:col-start-2 min-h-[25vh] md:min-h-screen px-8 md:px-[12.5vw] pt-20 md:flex flex-col justify-center">
           <p className="font-bold text-xl md:text-sm normal-text mb-12">
             {products.length
               ? `We found ${products.length} posts`

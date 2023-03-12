@@ -1,20 +1,34 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { ICart, IProductDetail } from '../products'
+import { IProductDetail } from '../products'
 import { opacityVariants, spring } from '../global'
 import { Exit } from './svg'
-import { useSetRecoilState } from 'recoil'
-import { cartsState } from '../atom'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { cartsState, ICart, userState } from '../atom'
+import axiosClient from '../helpers/axios-client'
 
 const ProductCard: React.FC<{
   product: IProductDetail
   productId: string
   setOpenCard: React.Dispatch<React.SetStateAction<boolean>>
 }> = ({ product, productId, setOpenCard }) => {
-  const setCarts = useSetRecoilState(cartsState)
+  const [carts, setCarts] = useRecoilState(cartsState)
+  const user = useRecoilValue(userState)
 
   const addToCart = (cart: ICart) => {
-    setCarts(carts => [...carts, { ...cart, count: 1 }])
+    axiosClient
+      .post('/cart', { ...cart, count: 1, id: user?.id })
+      .then(data => {
+        console.log(data)
+      })
+
+    carts.some(c => c.name === cart.name)
+      ? setCarts(carts =>
+          carts.map(c =>
+            c.name === cart.name ? { ...c, count: (c.count || 0) + 1 } : c
+          )
+        )
+      : setCarts(carts => [...carts, { ...cart, count: 1 }])
   }
 
   return (
@@ -24,7 +38,7 @@ const ProductCard: React.FC<{
       initial="hidden"
       animate="visible"
       exit="exit"
-      transition={spring}
+      transition={{ type: 'tween', duration: 0.25 }}
     >
       <div className="thumbnail-grid my-6">
         {product.cards?.length
@@ -32,24 +46,22 @@ const ProductCard: React.FC<{
               <div key={idx}>
                 <img
                   className={`thumbnail${product.square ? ' square' : ''}`}
-                  src={`./${productId}/${card.src}.jpg`}
-                  alt={card.src}
+                  src={`./${productId}/${card.name}.jpg`}
+                  alt={card.name}
                 />
                 <div className="flex items-center mt-2">
                   <div className="flex-1">
                     <h3 className="font-semibold">
-                      {card.src.replace(/-/g, ' ')}
+                      {card.name.replace(/-/g, ' ')}
                     </h3>
-                    <p>${card.price}</p>
+                    <p className="text-gray-500">${card.price}</p>
                   </div>
                   <button
-                    className="flex items-center px-4 p-2 bg-black text-white rounded-sm"
+                    className="flex items-center px-4 p-2 bg-black text-white rounded-sm active:translate-y-[1px] duration-200"
                     onClick={() =>
                       addToCart({
                         ...card,
-                        productId,
-                        type: product.type,
-                        square: product.square
+                        productId
                       })
                     }
                   >

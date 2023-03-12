@@ -32,7 +32,7 @@ const Index: React.FC = () => {
           </h6>
         </div>
       </div>
-      <ProductDisplay />
+      <ProductDisplay offset={6} />
     </>
   )
 }

@@ -31,8 +31,8 @@ const Root: React.FC = () => {
 
   return (
     <>
-      <Header toggleCart={toggleCart} />
       <ScrollToTop />
+      <Header toggleCart={toggleCart} />
       <AnimatePresence mode="wait">
         <motion.main
           key={location.pathname}

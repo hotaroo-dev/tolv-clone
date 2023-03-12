@@ -1,5 +1,19 @@
 import { atom } from 'recoil'
-import { ICart } from './products'
+
+export interface ICart {
+  productId: string
+  name: string
+  price: number
+  count?: number
+}
+
+export interface IUser {
+  id: number
+  name: string
+  email: string
+  email_verified_at?: string
+  created_at: string
+}
 
 const measurementState = atom({
   key: 'measurementState',
@@ -18,7 +32,7 @@ const tokenState = atom({
 
 const userState = atom({
   key: 'userState',
-  default: null
+  default: null as IUser | null
 })
 
 const cartsState = atom({

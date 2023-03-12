@@ -2,36 +2,30 @@ import React, { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import { Cart, Exit, Search } from './svg'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import { userState, measurementState, tokenState, cardState } from '../atom'
+import { useRecoilValue } from 'recoil'
+import { userState, measurementState, cardState, cartsState } from '../atom'
 import { spring } from '../global'
-import axiosClient from '../helpers/axios-client'
 
 const Header: React.FC<{ toggleCart: () => void }> = ({ toggleCart }) => {
-  const [user, setUser] = useRecoilState(userState)
-  const setToken = useSetRecoilState(tokenState)
-  const showMeasurement = useRecoilValue(measurementState)
-  const openCard = useRecoilValue(cardState)
-  const [openMenu, setOpenMenu] = useState(false)
   const { pathname } = useLocation()
   const { scrollY } = useScroll()
+  const [openMenu, setOpenMenu] = useState(false)
+  const user = useRecoilValue(userState)
+  const showMeasurement = useRecoilValue(measurementState)
+  const openCard = useRecoilValue(cardState)
+  const carts = useRecoilValue(cartsState)
+  const count = carts.reduce((sum, { count }) => sum + (count || 0), 0)
+
   const backgroundColor = useTransform(
     scrollY,
-    [0, 40],
+    [20, 40],
     ['rgba(250, 250, 250, 0)', 'rgba(255, 255, 255, 1)']
   )
   const boxShadow = useTransform(
     scrollY,
-    [10, 20],
+    [20, 40],
     ['none', '0 5px 10px #0003']
   )
-
-  const handleLogout = async () => {
-    await axiosClient.post('/logout')
-    setUser(null)
-    setToken(null)
-    toggleMenu()
-  }
 
   const toggleMenu = () => {
     setOpenMenu(prev => !prev)
@@ -98,9 +92,21 @@ const Header: React.FC<{ toggleCart: () => void }> = ({ toggleCart }) => {
           <Link to="/search" className="-translate-y-[1px]">
             <Search />
           </Link>
-          <button onClick={toggleCart}>
+          <button className="relative" onClick={toggleCart}>
             <Cart />
+            <span className="text-[85%] absolute -top-1 left-4 w-4 h-4 flex justify-center items-center bg-red-500 text-white rounded-lg select-none">
+              {count}
+            </span>
           </button>
+          {user ? (
+            <Link to="/account">
+              <button className="btn">{user.name}</button>
+            </Link>
+          ) : (
+            <Link to="/login" onClick={toggleMenu}>
+              <button className="btn">Login</button>
+            </Link>
+          )}
         </div>
 
         <div className="menu-bar" onClick={() => setOpenMenu(true)}>
@@ -147,9 +153,9 @@ const Header: React.FC<{ toggleCart: () => void }> = ({ toggleCart }) => {
                 </Link>
 
                 {user ? (
-                  <button className="button" onClick={handleLogout}>
-                    Logout
-                  </button>
+                  <Link to="/account" onClick={toggleMenu}>
+                    <button className="button">{user.name}</button>
+                  </Link>
                 ) : (
                   <Link to="/login" onClick={toggleMenu}>
                     <button className="button">Login</button>

@@ -4,13 +4,9 @@ import { Arrow } from '../components/svg'
 import { products } from '../products'
 
 const ProductDisplay: React.FC<{ offset?: number }> = ({ offset }) => {
-  const productsForDisplay = offset
-    ? products.slice(products.length - offset, products.length)
-    : products
-
   return (
     <div className="products">
-      {productsForDisplay.map(product => (
+      {products.slice(0, offset).map(product => (
         <Link
           to={`/products/${product.id}`}
           key={product.id}

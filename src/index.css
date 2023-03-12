@@ -63,7 +63,7 @@ body {
   }
 
   header .wrapper > .buttons {
-    @apply flex-1 flex gap-6 justify-end cursor-pointer;
+    @apply flex-1 flex gap-7 items-center justify-end cursor-pointer;
   }
 
   header .wrapper > .buttons a {
@@ -112,16 +112,44 @@ body {
     @apply inline-block rotate-[-12deg] translate-x-[-1px];
   }
 
+  .content-wrap {
+    @apply md:relative md:left-1/2 md:w-1/2 px-10 md:px-24 py-[25vh] md:py-10 lg:py-20 space-y-[25vh] bg-[#f7f2eb];
+  }
+
+  .content-wrap .country {
+    @apply text-xl md:text-lg font-semibold normal-text;
+  }
+
+  .stockists {
+    @apply font-bold text-2xl md:text-3xl normal-text mt-[20vh] md:mt-16 cursor-pointer;
+  }
+
+  .stockists li > span {
+    @apply hover:text-[#001dff] duration-300;
+  }
+
+  .stockist-wrapper {
+    @apply pl-12 space-y-8 mb-20 md:pl-24 md:space-y-5 md:mb-16;
+  }
+
+  .stockist-wrapper .city {
+    @apply text-xl md:text-lg font-normal normal-text;
+  }
+
   .text-wrapper {
     @apply text-center mx-auto;
   }
 
-  .text-wrapper .text-style {
+  .text-style {
     @apply font-bold text-5xl;
   }
 
-  .text-wrapper .text-normal {
-    @apply font-normal text-3xl leading-[1.1];
+  .text-normal {
+    @apply font-normal text-3xl leading-tight;
+  }
+
+  .text-small {
+    @apply text-2xl md:text-[19px] md:leading-tight;
   }
 
   .bg-image {
@@ -134,6 +162,10 @@ body {
 
   .links a {
     @apply text-orange-600 underline underline-offset-2;
+  }
+
+  .buttons .btn {
+    @apply py-1 px-4 border border-[rgb(63,63,70)] hover:bg-black hover:text-white duration-200 normal-text rounded-full;
   }
 
   .hero,
@@ -233,20 +265,20 @@ body {
     @apply z-10 invisible opacity-0 absolute top-1/2 left-[44%] -translate-y-1/2 -translate-x-[44%] text-lg leading-tight;
   }
 
-  .product-screen {
+  .screen {
     @apply h-full grid md:grid-cols-2;
   }
 
-  .product-screen .left-column {
+  .screen .left-column {
     @apply h-[75vh] md:h-screen;
   }
 
-  .product-screen .right-column {
+  .screen .right-column {
     @apply flex flex-col md:h-screen md:w-1/2 md:fixed md:right-0;
   }
 
   .right-column .wrapper {
-    @apply px-8 md:px-14 lg:px-24 md:pt-10 lg:pt-20 flex-1;
+    @apply pl-10 md:px-14 lg:px-24 md:pt-10 lg:pt-20 flex-1;
   }
 
   .right-column .button-wrapper {
@@ -254,11 +286,11 @@ body {
   }
 
   .button-wrapper h3 {
-    @apply font-bold text-center;
+    @apply text-black font-bold text-center;
   }
 
   .wrapper .product-info {
-    @apply flex justify-between my-24 md:my-10 lg:mb-16;
+    @apply flex gap-8 justify-between my-24 md:my-10 lg:mb-16;
   }
 
   .wrapper .product-info .name {
@@ -266,7 +298,7 @@ body {
   }
 
   .wrapper .product-info .type {
-    @apply font-normal md:mr-10 xl:mr-20 text-lg leading-tight;
+    @apply font-normal mr-4 md:mr-10 xl:mr-20 text-lg leading-tight;
   }
 
   .wrapper .product-info .designer {
@@ -274,11 +306,11 @@ body {
   }
 
   .wrapper .paragraph {
-    @apply font-light text-[30px] md:text-[24px] xl:text-[30px] leading-[1.1] tracking-tighter;
+    @apply mr-10 font-light text-black text-[30px] md:text-[24px] xl:text-[30px] leading-[1.15] tracking-tighter;
   }
 
   .spacing {
-    @apply max-w-[560px] mx-auto px-8 md:px-16 lg:px-20 xl:px-8;
+    @apply max-w-[560px] mx-auto px-10 md:px-16 lg:px-20 xl:px-8;
   }
 
   .panels {
@@ -294,7 +326,7 @@ body {
   }
 
   .exit {
-    @apply z-10 w-5 h-5 absolute top-5 right-8 cursor-pointer;
+    @apply z-10 w-5 h-5 absolute top-5 right-10 cursor-pointer;
   }
 
   .form {
@@ -310,7 +342,7 @@ body {
   }
 
   .button {
-    @apply w-full py-3 text-white bg-zinc-900 font-sans font-semibold rounded-md;
+    @apply w-full py-3 text-white bg-zinc-900 font-semibold rounded-md normal-text active:translate-y-[1px] duration-200;
   }
 
   .errors {
@@ -357,10 +389,6 @@ body {
     aspect-ratio: 3 / 2;
   }
 
-  .search-products > .thumbnail {
-    aspect-ratio: 10 / 7;
-  }
-
   .thumbnail.square {
     aspect-ratio: 5 / 4;
   }
@@ -382,6 +410,20 @@ body {
     left: -1em;
     height: 1px;
     background-color: rgb(210, 220, 220);
+  }
+
+  .stockists li.active span {
+    color: #001dff;
+  }
+
+  .stockists li.active span::before {
+    content: '— ';
+  }
+
+  @media (min-width: 640px) and (max-width: 767px) {
+    .products > .product:nth-child(5).large {
+      aspect-ratio: 2 / 1;
+    }
   }
 
   @media screen and (max-width: 860px) {

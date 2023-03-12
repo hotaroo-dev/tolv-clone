@@ -39,9 +39,9 @@ const Product: React.FC = () => {
       document.body.style.overflow = 'hidden'
     } else {
       setTimeout(() => {
-        document.body.style.overflow = 'auto'
         if (overlayRef.current) overlayRef.current.style.filter = 'none'
-      }, 1200)
+        document.body.style.overflow = 'auto'
+      }, 400)
     }
   }, [openCard])
 
@@ -65,9 +65,9 @@ const Product: React.FC = () => {
             initial="hidden"
             animate="visible"
             exit="hidden"
-            transition={spring}
+            transition={{ type: 'tween', duration: 0.25 }}
           >
-            <div className="product-screen">
+            <div className="screen">
               <motion.div
                 className="left-column"
                 variants={opacityVariants}
@@ -101,16 +101,16 @@ const Product: React.FC = () => {
                     </div>
                   </div>
                   <div className="w-full py-8">
-                    <h5 className="paragraph">
+                    <p className="paragraph">
                       {product.description.map((paragraph, idx) => (
                         <span key={idx} className="block mb-4">
                           {paragraph}
                         </span>
                       ))}
-                    </h5>
+                    </p>
                   </div>
                 </div>
-                <div className="flex">
+                <div className="md:flex space-y-2">
                   <div className="button-wrapper" onClick={toggleMeasurement}>
                     <h3>Measurements</h3>
                   </div>

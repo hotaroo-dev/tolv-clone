@@ -15,15 +15,6 @@ interface IProduct {
   large?: boolean
 }
 
-export interface ICart {
-  productId: string
-  src: string
-  type: productType
-  price: number
-  count?: number
-  square?: boolean
-}
-
 export interface IProductDetail {
   name: string
   type: productType
@@ -37,7 +28,7 @@ export interface IProductDetail {
     large?: boolean
   }[]
   cards?: {
-    src: string
+    name: string
     price: number
   }[]
   square?: boolean
@@ -45,11 +36,6 @@ export interface IProductDetail {
 
 interface IProductDetails {
   [key: string]: IProductDetail
-}
-
-interface IText {
-  text: string
-  links: string[]
 }
 
 const id = [
@@ -115,10 +101,10 @@ const productDetail: IProductDetails = {
       { src: ['cherry-chaise-lookbook'] }
     ],
     cards: [
-      { src: 'cherry-2-seater', price: 100 },
-      { src: 'cherry-3-seater-teal', price: 120 },
-      { src: 'cherry-chaise', price: 145 },
-      { src: 'cherry-3-seater-oyster', price: 125 }
+      { name: 'cherry-2-seater', price: 100 },
+      { name: 'cherry-3-seater-teal', price: 120 },
+      { name: 'cherry-chaise', price: 145 },
+      { name: 'cherry-3-seater-oyster', price: 125 }
     ]
   },
   [id[1]]: {
@@ -150,9 +136,9 @@ const productDetail: IProductDetails = {
       }
     ],
     cards: [
-      { src: 'figura-chair', price: 80 },
-      { src: 'figura-light-oak', price: 80 },
-      { src: 'figura-walnut', price: 100 }
+      { name: 'figura-chair', price: 80 },
+      { name: 'figura-light-oak', price: 80 },
+      { name: 'figura-walnut', price: 100 }
     ],
     square: true
   },
@@ -182,8 +168,8 @@ const productDetail: IProductDetails = {
       { src: ['inlay-detail'] }
     ],
     cards: [
-      { src: 'inlay-chair', price: 120 },
-      { src: 'inlay-black-oak', price: 120 }
+      { name: 'inlay-chair', price: 120 },
+      { name: 'inlay-black-oak', price: 120 }
     ],
     square: true
   },
@@ -210,8 +196,8 @@ const productDetail: IProductDetails = {
       }
     ],
     cards: [
-      { src: 'bourbon-desk', price: 180 },
-      { src: 'bourbon-and-figura-walnut', price: 260 }
+      { name: 'bourbon-desk', price: 180 },
+      { name: 'bourbon-and-figura-walnut', price: 260 }
     ],
     square: true
   },
@@ -249,9 +235,9 @@ const productDetail: IProductDetails = {
       { src: ['copal-detail'] }
     ],
     cards: [
-      { src: 'copal-sofa', price: 240 },
-      { src: 'copal-2-seater', price: 160 },
-      { src: 'copal-3-seater', price: 260 }
+      { name: 'copal-sofa', price: 240 },
+      { name: 'copal-2-seater', price: 160 },
+      { name: 'copal-3-seater', price: 260 }
     ]
   },
   [id[5]]: {
@@ -277,8 +263,8 @@ const productDetail: IProductDetails = {
       { src: ['kitsune-detail'], space: true }
     ],
     cards: [
-      { src: 'kitsune-armchair', price: 120 },
-      { src: 'kitsune-leather', price: 160 }
+      { name: 'kitsune-armchair', price: 120 },
+      { name: 'kitsune-leather', price: 160 }
     ],
     square: true
   },
@@ -314,9 +300,9 @@ const productDetail: IProductDetails = {
       { src: ['kile-detail'] }
     ],
     cards: [
-      { src: 'kile-low-90-light', price: 30 },
-      { src: 'kile-low-60-black', price: 30 },
-      { src: 'kile-tall-50-light', price: 40 }
+      { name: 'kile-low-90-light', price: 30 },
+      { name: 'kile-low-60-black', price: 30 },
+      { name: 'kile-tall-50-light', price: 40 }
     ],
     square: true
   },
@@ -353,8 +339,8 @@ const productDetail: IProductDetails = {
       }
     ],
     cards: [
-      { src: 'pensive-light-oak', price: 160 },
-      { src: 'pensive-black-oak-leather', price: 200 }
+      { name: 'pensive-light-oak', price: 160 },
+      { name: 'pensive-black-oak-leather', price: 200 }
     ],
     square: true
   },
@@ -379,8 +365,8 @@ const productDetail: IProductDetails = {
       { src: ['com-lookbook'], space: true }
     ],
     cards: [
-      { src: 'com-dining-chair', price: 50 },
-      { src: 'com-light-oak', price: 50 }
+      { name: 'com-dining-chair', price: 50 },
+      { name: 'com-light-oak', price: 50 }
     ],
     square: true
   },
@@ -422,8 +408,8 @@ const productDetail: IProductDetails = {
       }
     ],
     cards: [
-      { src: 'portobello-light-oak', price: 200 },
-      { src: 'portobello-black-oak', price: 200 }
+      { name: 'portobello-light-oak', price: 200 },
+      { name: 'portobello-black-oak', price: 200 }
     ]
   },
   [id[10]]: {
@@ -482,12 +468,12 @@ const productDetail: IProductDetails = {
       }
     ],
     cards: [
-      { src: 'papa-500x500', price: 25 },
-      { src: 'papa-600x300', price: 30 },
-      { src: 'papa-350x350', price: 20 },
-      { src: 'papa-500x500-corten', price: 25 },
-      { src: 'papa-600x300-greengold', price: 30 },
-      { src: 'papa-350x350-dove', price: 20 }
+      { name: 'papa-500x500', price: 25 },
+      { name: 'papa-600x300', price: 30 },
+      { name: 'papa-350x350', price: 20 },
+      { name: 'papa-500x500-corten', price: 25 },
+      { name: 'papa-600x300-greengold', price: 30 },
+      { name: 'papa-350x350-dove', price: 20 }
     ]
   },
   [id[11]]: {
@@ -517,32 +503,17 @@ const productDetail: IProductDetails = {
       }
     ],
     cards: [
-      { src: 'light-oak', price: 25 },
-      { src: 'black-oak', price: 25 }
+      { name: 'light-oak', price: 25 },
+      { name: 'black-oak', price: 25 }
     ],
     square: true
   }
 }
 
-const heroText: IText[] = [
-  {
-    text: 'Eyes rest from an afternoon in the sun. Smooth textures feel cool on bare feet and skin.',
-    links: ['Kitsune sofa', 'armchair', 'I-O coffee table (steel base)']
-  },
-  {
-    text: 'A sip of cocktail brings back memories of the beach.',
-    links: ['Portobello armchair', 'foot stool (wood base)']
-  },
-  {
-    text: 'Sunset is a good time to gather. Evening light bathes the space in warm tones and colours.',
-    links: ['Copal', 'Fromage']
-  }
-]
-
 const getProducts = (q: string) => {
   return q === ''
     ? []
-    : products.filter(product => product.name.includes(q.toLowerCase()))
+    : products.filter(product => product.id.includes(q.toLowerCase()))
 }
 
-export { products, productDetail, heroText, getProducts }
+export { products, productDetail, getProducts }
