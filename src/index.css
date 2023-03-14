@@ -323,7 +323,7 @@ body > div:not(#root) {
   }
 
   .panels {
-    @apply py-[25vh] space-y-[25vh] w-full md:w-1/2;
+    @apply py-[20vh] space-y-[25vh] w-full md:w-1/2;
   }
 
   .panels .two-column {

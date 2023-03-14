@@ -58,7 +58,7 @@ const About: React.FC = () => {
         </motion.div>
       </div>
 
-      <div className="panels pb-[15vh]">
+      <div className="panels">
         <div className="spacing">
           <img src="./breakfast.png" alt="eating breakfast" />
           <div className="mt-8 space-y-4 md:pr-16">
