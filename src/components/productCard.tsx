@@ -39,36 +39,34 @@ const ProductCard: React.FC<{
       transition={{ type: 'tween', duration: 0.25 }}
     >
       <div className="thumbnail-grid my-6">
-        {product.cards?.length
-          ? product.cards.map((card, idx) => (
-              <div key={idx}>
-                <img
-                  className={`thumbnail${product.square ? ' square' : ''}`}
-                  src={`./${productId}/${card.name}.jpg`}
-                  alt={card.name}
-                />
-                <div className="flex items-center mt-2">
-                  <div className="flex-1">
-                    <h3 className="font-semibold">
-                      {card.name.replace(/-/g, ' ')}
-                    </h3>
-                    <p className="text-gray-500">${card.price}</p>
-                  </div>
-                  <button
-                    className="flex items-center px-4 p-2 bg-black text-white rounded-sm active:translate-y-[1px] duration-200"
-                    onClick={() =>
-                      addToCart({
-                        ...card,
-                        productId
-                      })
-                    }
-                  >
-                    <p className="text-base leading-none">Add</p>
-                  </button>
-                </div>
+        {product.cards?.map((card, idx) => (
+          <div key={idx}>
+            <img
+              className={`thumbnail${product.square ? ' square' : ''}`}
+              src={`./${productId}/${card.name}.jpg`}
+              alt={card.name}
+            />
+            <div className="flex items-center mt-2">
+              <div className="flex-1">
+                <h3 className="font-semibold">
+                  {card.name.replace(/-/g, ' ')}
+                </h3>
+                <p className="text-gray-500">${card.price}</p>
               </div>
-            ))
-          : null}
+              <button
+                className="flex items-center px-4 p-2 bg-black text-white rounded-sm active:translate-y-[1px] duration-200"
+                onClick={() =>
+                  addToCart({
+                    ...card,
+                    productId
+                  })
+                }
+              >
+                <p className="text-base leading-none">Add</p>
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
       <div
         className="w-6 h-6 cursor-pointer absolute top-5 right-8 md:top-3 md:right-4"

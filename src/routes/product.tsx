@@ -5,7 +5,13 @@ import { Link, useLocation, useParams } from 'react-router-dom'
 import { productDetail } from '../products'
 import { useRecoilState } from 'recoil'
 import { measurementState, cardState } from '../atom'
-import { imageDelay, opacityVariants, textDelay, spring } from '../global'
+import {
+  imageDelay,
+  opacityVariants,
+  textDelay,
+  spring,
+  linear
+} from '../global'
 import { Exit } from '../components/svg'
 import ProductCard from '../components/productCard'
 
@@ -16,6 +22,7 @@ const Product: React.FC = () => {
   const [showMeasurement, setShowMeasurement] = useRecoilState(measurementState)
   const [openCard, setOpenCard] = useRecoilState(cardState)
   const product = productDetail[productId]
+  const isLarge = window.innerWidth >= 768
 
   const toggleMeasurement = () => {
     setShowMeasurement(prev => !prev)
@@ -23,7 +30,7 @@ const Product: React.FC = () => {
 
   useLayoutEffect(() => {
     if (showMeasurement || openCard) {
-      window.innerWidth > 640
+      isLarge
         ? window.scrollTo(0, 0)
         : window.scrollTo({ top: 0, behavior: 'smooth' })
     }
@@ -55,17 +62,13 @@ const Product: React.FC = () => {
         {!showMeasurement ? (
           <motion.div
             variants={
-              openCard
-                ? window.innerWidth >= 768
-                  ? blurVariants
-                  : displayNone
-                : display
+              openCard ? (isLarge ? blurVariants : displayNone) : display
             }
             ref={overlayRef}
             initial="hidden"
             animate="visible"
             exit="hidden"
-            transition={{ type: 'tween', duration: 0.25 }}
+            transition={isLarge ? linear : spring}
           >
             <div className="screen">
               <motion.div

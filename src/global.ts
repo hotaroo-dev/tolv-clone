@@ -30,4 +30,9 @@ const formVariants = {
   visible: { opacity: 1, scale: 1 }
 }
 
-export { spring, imageDelay, textDelay, opacityVariants, formVariants }
+const linear = {
+  type: 'tween',
+  duration: 0.25
+}
+
+export { spring, linear, imageDelay, textDelay, opacityVariants, formVariants }

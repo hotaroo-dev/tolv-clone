@@ -81,7 +81,7 @@ const Carts: React.FC<{ openCart: boolean }> = ({ openCart }) => {
                   <h3 className="text-sm font-semibold uppercase">
                     {cart.name.replace(/-/g, ' ')}
                   </h3>
-                  <p className="text-gray-500">${cart.price}.00</p>
+                  <p className="text-gray-500">${Number(cart.price)}.00</p>
                   <div className="flex-1 flex items-end justify-between">
                     <span className="text-gray-500 text-[90%]">
                       x{cart.count}
