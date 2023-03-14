@@ -1,7 +1,9 @@
 import React from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Link } from 'react-router-dom'
 import { Arrow } from '../components/svg'
 import { products } from '../products'
+import 'react-lazy-load-image-component/src/effects/blur.css'
 
 const ProductDisplay: React.FC<{ offset?: number }> = ({ offset }) => {
   return (
@@ -13,11 +15,12 @@ const ProductDisplay: React.FC<{ offset?: number }> = ({ offset }) => {
           className={`product${product.large ? ' large' : ''}`}
           state={{ type: product.type }}
         >
-          <div
-            className="bg-image"
-            style={{
-              backgroundImage: `url(./${product.id}/${product.id}.jpg)`
-            }}
+          <LazyLoadImage
+            className="image"
+            src={`./${product.id}/${product.id}.jpg`}
+            placeholderSrc={`./${product.id}/${product.id}.jpg`}
+            alt={product.id}
+            effect="blur"
           />
           <div className="product-info">
             <h4 className="font-bold">{product.name}</h4>

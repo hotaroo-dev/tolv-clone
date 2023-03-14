@@ -9,9 +9,6 @@ const Products: React.FC = () => {
     <motion.div
       className="pt-14"
       variants={opacityVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
       transition={imageDelay}
     >
       <Helmet>

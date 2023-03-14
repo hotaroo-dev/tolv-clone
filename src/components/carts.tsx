@@ -50,7 +50,7 @@ const Carts: React.FC<{ openCart: boolean }> = ({ openCart }) => {
 
   return (
     <motion.section
-      className="font-sans carts carts-size md:mx-16 lg:mx-20 xl:left-[57.5%] xl:right-0 xl:mx-auto"
+      className="font-sans carts carts-size md:mx-16 lg:mx-20 xl:left-[57.8%] xl:right-0 xl:mx-auto"
       style={{ translateY }}
       variants={cartsVariants}
       initial={false}

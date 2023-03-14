@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useRef } from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Helmet } from 'react-helmet-async'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link, useLocation, useParams } from 'react-router-dom'
@@ -133,10 +134,12 @@ const Product: React.FC = () => {
                     }${panel.space ? ' spacing' : ''}`}
                   >
                     {panel.src.map(image => (
-                      <img
+                      <LazyLoadImage
                         key={image}
                         src={`/${productId}/${image}.jpg`}
+                        placeholderSrc={`/${productId}/${image}.jpg`}
                         alt={image}
+                        effect="blur"
                       />
                     ))}
                   </div>

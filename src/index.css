@@ -246,6 +246,10 @@ body > div:not(#root) {
     @apply aspect-square relative overflow-hidden;
   }
 
+  .product > span {
+    @apply h-full;
+  }
+
   .products > .product:nth-child(5).large {
     @apply row-start-4 sm:row-start-3 md:row-start-2 md:col-start-2;
   }
@@ -303,7 +307,7 @@ body > div:not(#root) {
   }
 
   .wrapper .product-info .type {
-    @apply font-normal mr-4 md:mr-10 xl:mr-20 text-lg leading-tight;
+    @apply font-normal mr-10 xl:mr-20 text-lg leading-tight;
   }
 
   .wrapper .product-info .designer {
