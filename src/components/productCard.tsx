@@ -44,7 +44,7 @@ const ProductCard: React.FC<{
               <div key={idx}>
                 <img
                   className={`thumbnail${product.square ? ' square' : ''}`}
-                  src={`/${productId}/${card.name}.jpg`}
+                  src={`./${productId}/${card.name}.jpg`}
                   alt={card.name}
                 />
                 <div className="flex items-center mt-2">

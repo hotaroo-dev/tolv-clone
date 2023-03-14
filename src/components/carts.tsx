@@ -72,7 +72,9 @@ const Carts: React.FC<{ openCart: boolean }> = ({ openCart }) => {
               >
                 <img
                   className="w-32 h-28"
-                  src={`/${cart.productId}/${cart.name}.jpg`}
+                  src={`${import.meta.env.BASE_URL}/products/${
+                    cart.productId
+                  }/${cart.name}.jpg`}
                   alt={cart.name}
                 />
                 <div className="flex-1 flex flex-col ml-4 mt-2">

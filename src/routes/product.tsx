@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useRef } from 'react'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Helmet } from 'react-helmet-async'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link, useLocation, useParams } from 'react-router-dom'
@@ -77,7 +76,7 @@ const Product: React.FC = () => {
                 <div
                   className="bg-image h-full"
                   style={{
-                    backgroundImage: `url(/${productId}/hero.jpg)`
+                    backgroundImage: `url(./${productId}/hero.jpg)`
                   }}
                 ></div>
               </motion.div>
@@ -134,12 +133,10 @@ const Product: React.FC = () => {
                     }${panel.space ? ' spacing' : ''}`}
                   >
                     {panel.src.map(image => (
-                      <LazyLoadImage
+                      <img
                         key={image}
-                        src={`/${productId}/${image}.jpg`}
-                        placeholderSrc={`/${productId}/${image}.jpg`}
+                        src={`./${productId}/${image}.jpg`}
                         alt={image}
-                        effect="blur"
                       />
                     ))}
                   </div>
@@ -183,7 +180,7 @@ const Product: React.FC = () => {
               </div>
             </div>
             <div className="h-auto w-full">
-              <img className="mx-auto" src={`/${productId}/diagram.svg`} />
+              <img className="mx-auto" src={`./${productId}/diagram.svg`} />
             </div>
           </motion.div>
         )}

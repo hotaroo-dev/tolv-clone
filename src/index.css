@@ -68,7 +68,7 @@ body > div:not(#root) {
   }
 
   header .wrapper > .buttons {
-    @apply flex-1 flex gap-7 items-center justify-end cursor-pointer;
+    @apply ml-auto md:flex-1 flex gap-7 items-center justify-end cursor-pointer;
   }
 
   header .wrapper > .buttons a {
@@ -267,7 +267,7 @@ body > div:not(#root) {
   }
 
   .products > .product.large {
-    @apply col-span-2 aspect-video sm:aspect-auto;
+    @apply col-span-2 aspect-video sm:aspect-[2/1];
   }
 
   .product .product-info {

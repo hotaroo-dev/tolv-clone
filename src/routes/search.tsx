@@ -69,7 +69,7 @@ const SearchedProducts: React.FC = () => {
                   <div
                     className="bg-image mb-4 rounded-sm"
                     style={{
-                      backgroundImage: `url(/${product.id}/${product.id}.jpg)`
+                      backgroundImage: `url(./products/${product.id}/${product.id}.jpg)`
                     }}
                   ></div>
                   <div className="space-y-4">
