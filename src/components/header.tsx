@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import { Cart, Exit, Search } from './svg'
@@ -6,10 +6,13 @@ import { useRecoilValue } from 'recoil'
 import { userState, measurementState, cardState, cartsState } from '../atom'
 import { spring } from '../global'
 
-const Header: React.FC<{ toggleCart: () => void }> = ({ toggleCart }) => {
+const Header: React.FC<{
+  toggleCart: () => void
+  toggleMenu: () => void
+  openMenu: boolean
+}> = ({ toggleCart, toggleMenu, openMenu }) => {
   const { pathname } = useLocation()
   const { scrollY } = useScroll()
-  const [openMenu, setOpenMenu] = useState(false)
   const user = useRecoilValue(userState)
   const showMeasurement = useRecoilValue(measurementState)
   const openCard = useRecoilValue(cardState)
@@ -22,10 +25,6 @@ const Header: React.FC<{ toggleCart: () => void }> = ({ toggleCart }) => {
     ['rgba(250, 250, 250, 0)', 'rgba(255, 255, 255, 1)']
   )
   const boxShadow = useTransform(scrollY, [20, 40], ['none', '0 4px 8px #0003'])
-
-  const toggleMenu = () => {
-    setOpenMenu(prev => !prev)
-  }
 
   useEffect(() => {
     if (!openMenu) return
@@ -99,13 +98,13 @@ const Header: React.FC<{ toggleCart: () => void }> = ({ toggleCart }) => {
               <button className="btn">{user.name}</button>
             </Link>
           ) : (
-            <Link to="/login" onClick={toggleMenu}>
+            <Link to="/login">
               <button className="btn">Login</button>
             </Link>
           )}
         </div>
 
-        <div className="menu-bar" onClick={() => setOpenMenu(true)}>
+        <div className="menu-bar" onClick={toggleMenu}>
           <span className="line"></span>
           <span className="line"></span>
         </div>
@@ -123,25 +122,19 @@ const Header: React.FC<{ toggleCart: () => void }> = ({ toggleCart }) => {
               <nav className="mobile-menu">
                 <ul className="normal-text flex-1">
                   <li>
-                    <Link to="/products" onClick={toggleMenu}>
-                      Products
-                    </Link>
+                    <Link to="/products">Products</Link>
                   </li>
                   <li>
-                    <Link to="/stockists" onClick={toggleMenu}>
-                      Stockists
-                    </Link>
+                    <Link to="/stockists">Stockists</Link>
                   </li>
                   <li>
-                    <Link to="/about" onClick={toggleMenu}>
-                      About us
-                    </Link>
+                    <Link to="/about">About us</Link>
                   </li>
                 </ul>
                 <div className="exit" onClick={toggleMenu}>
                   <Exit />
                 </div>
-                <Link to="/search" className="search mb-6" onClick={toggleMenu}>
+                <Link to="/search" className="search mb-6">
                   <Search />
                   <span className="text-lg font-sans">
                     Search anything here
@@ -149,11 +142,11 @@ const Header: React.FC<{ toggleCart: () => void }> = ({ toggleCart }) => {
                 </Link>
 
                 {user ? (
-                  <Link to="/account" onClick={toggleMenu}>
+                  <Link to="/account">
                     <button className="button">{user.name}</button>
                   </Link>
                 ) : (
-                  <Link to="/login" onClick={toggleMenu}>
+                  <Link to="/login">
                     <button className="button">Login</button>
                   </Link>
                 )}

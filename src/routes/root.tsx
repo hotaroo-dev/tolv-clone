@@ -12,6 +12,7 @@ import { opacityVariants } from '../global'
 
 const Root: React.FC = () => {
   const [openCart, setOpenCart] = useState(false)
+  const [openMenu, setOpenMenu] = useState(false)
   const location = useLocation()
   const token = useRecoilValue(tokenState)
   const setUser = useSetRecoilState(userState)
@@ -29,10 +30,18 @@ const Root: React.FC = () => {
     setOpenCart(prev => !prev)
   }
 
+  const toggleMenu = () => {
+    setOpenMenu(prev => !prev)
+  }
+
   return (
     <>
-      <ScrollToTop />
-      <Header toggleCart={toggleCart} />
+      <ScrollToTop setOpenCart={setOpenCart} setOpenMenu={setOpenMenu} />
+      <Header
+        toggleCart={toggleCart}
+        toggleMenu={toggleMenu}
+        openMenu={openMenu}
+      />
       <AnimatePresence mode="wait">
         <motion.main
           key={location.pathname}
