@@ -21,11 +21,7 @@ const Header: React.FC<{ toggleCart: () => void }> = ({ toggleCart }) => {
     [20, 40],
     ['rgba(250, 250, 250, 0)', 'rgba(255, 255, 255, 1)']
   )
-  const boxShadow = useTransform(
-    scrollY,
-    [20, 40],
-    ['none', '0 5px 10px #0003']
-  )
+  const boxShadow = useTransform(scrollY, [20, 40], ['none', '0 4px 8px #0003'])
 
   const toggleMenu = () => {
     setOpenMenu(prev => !prev)

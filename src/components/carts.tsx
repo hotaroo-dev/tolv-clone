@@ -16,7 +16,7 @@ interface ICart {
 
 const Carts: React.FC<{ openCart: boolean }> = ({ openCart }) => {
   const { scrollY } = useScroll()
-  const translateY = useTransform(scrollY, [0, 20], [0, 12])
+  const translateY = useTransform(scrollY, [0, 20], [0, 10])
   const token = useRecoilValue(tokenState)
   const [carts, setCarts] = useRecoilState(cartsState)
   const total = carts.reduce(
