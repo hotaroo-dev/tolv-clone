@@ -11,7 +11,7 @@ const Stockists: React.FC = () => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         const id = entry.target.getAttribute('id')
-        entry.intersectionRatio > 0
+        entry.isIntersecting
           ? document
               .querySelector(`.stockists li span[data-id=${id}]`)
               ?.parentElement?.classList.add('active')
