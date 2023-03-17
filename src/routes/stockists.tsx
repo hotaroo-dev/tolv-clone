@@ -8,18 +8,17 @@ const Stockists: React.FC = () => {
   const stockistsRef = useRef<HTMLUListElement>(null)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const id = entry.target.getAttribute('id')
-        entry.isIntersecting
-          ? document
-              .querySelector(`.stockists li span[data-id=${id}]`)
-              ?.parentElement?.classList.add('active')
-          : document
-              .querySelector(`.stockists li span[data-id=${id}]`)
-              ?.parentElement?.classList.remove('active')
-      })
-    })
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          const id = entry.target.getAttribute('id')
+          document
+            .querySelector(`.stockists li span[data-id=${id}]`)
+            ?.parentElement?.classList.toggle('active', entry.isIntersecting)
+        })
+      },
+      { threshold: 0.2 }
+    )
 
     document.querySelectorAll('main div[id]').forEach(entry => {
       observer.observe(entry)
