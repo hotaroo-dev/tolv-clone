@@ -11,12 +11,12 @@ const spring = {
 
 const imageDelay = {
   ...spring,
-  delay: 0.35
+  delay: 0.4
 }
 
 const textDelay = {
   ...tween,
-  delay: 0.4
+  delay: 0.45
 }
 
 const opacityVariants = {
