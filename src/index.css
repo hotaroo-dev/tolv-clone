@@ -118,7 +118,7 @@ body > div:not(#root) {
   }
 
   .content-wrap {
-    @apply md:relative md:left-1/2 md:w-1/2 px-10 md:px-24 py-[25vh] md:py-10 lg:py-20 space-y-[25vh] bg-[#f7f2eb];
+    @apply md:relative md:left-1/2 md:w-1/2 px-8 md:px-24 py-[25vh] md:py-10 lg:py-20 space-y-[25vh] bg-[#f7f2eb];
   }
 
   .content-wrap .country {
@@ -287,7 +287,7 @@ body > div:not(#root) {
   }
 
   .right-column .wrapper {
-    @apply pl-10 md:px-14 lg:px-24 md:pt-10 lg:pt-20 flex-1;
+    @apply pl-8 md:px-14 lg:px-24 md:pt-10 lg:pt-20 flex-1;
   }
 
   .right-column .button-wrapper {
@@ -315,11 +315,11 @@ body > div:not(#root) {
   }
 
   .wrapper .paragraph {
-    @apply mr-10 font-light text-black text-[30px] md:text-[24px] xl:text-[30px] leading-[1.15] tracking-tighter;
+    @apply mr-8 font-light text-black text-[30px] md:text-[24px] xl:text-[30px] leading-[1.15] tracking-tighter;
   }
 
   .spacing {
-    @apply max-w-[560px] mx-auto px-10 md:px-16 lg:px-20 xl:px-8;
+    @apply max-w-[560px] mx-auto px-8 md:px-16 lg:px-20 xl:px-8;
   }
 
   .panels {
