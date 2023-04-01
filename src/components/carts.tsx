@@ -119,4 +119,4 @@ const cartVariants = {
   exit: { opacity: 0, x: -25, transition: { type: 'tween', duration: 0.4 } }
 }
 
-export default Carts
+export default React.memo(Carts)

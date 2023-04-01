@@ -169,4 +169,4 @@ const menuVariants = {
   collapsed: { x: '-100%' }
 }
 
-export default Header
+export default React.memo(Header)

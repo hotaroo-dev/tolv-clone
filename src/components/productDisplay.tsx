@@ -14,7 +14,7 @@ const ProductDisplay: React.FC<{ offset?: number }> = ({ offset }) => {
           state={{ type: product.type }}
         >
           <div
-            className="bg-image"
+            className="bg-image bg-orange-50"
             style={{
               backgroundImage: `url(./products/${product.id}/${product.id}.jpg)`
             }}

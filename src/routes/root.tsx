@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -26,13 +26,13 @@ const Root: React.FC = () => {
     })()
   }, [])
 
-  const toggleCart = () => {
+  const toggleCart = useCallback(() => {
     setOpenCart(prev => !prev)
-  }
+  }, [])
 
-  const toggleMenu = () => {
+  const toggleMenu = useCallback(() => {
     setOpenMenu(prev => !prev)
-  }
+  }, [])
 
   return (
     <>
