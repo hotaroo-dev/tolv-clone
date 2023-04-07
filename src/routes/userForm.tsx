@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 import { AnimatePresence, motion } from 'framer-motion'
 import axiosClient from '../helpers/axios-client'
 
@@ -43,6 +44,7 @@ const UserForm: React.FC = () => {
         .put(`/users/${userId}`, { ...payload, id: userId })
         .then(() => {
           navigate('/users')
+          toast.success('Successfully updated!')
         })
         .catch(err => {
           const { response } = err
@@ -55,6 +57,7 @@ const UserForm: React.FC = () => {
         .post(`/users`, payload)
         .then(() => {
           navigate('/users')
+          toast.success('Successfully created!')
         })
         .catch(err => {
           const { response } = err

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 import { IUser } from '../atom'
+import { Delete, Edit } from '../components/svg'
 import axiosClient from '../helpers/axios-client'
 
 const Users: React.FC = () => {
@@ -22,6 +24,7 @@ const Users: React.FC = () => {
     }
     setUsers(users => users.filter(user => user.id !== id))
 
+    toast.success('Successfully deleted!')
     axiosClient.delete(`/users/${id}`)
   }
 
@@ -77,17 +80,17 @@ const Users: React.FC = () => {
                 </td>
                 <td>{formatDate}</td>
                 <td className="col-span-2 flex justify-end">
-                  <div className="flex justify-start items-center gap-4 text-base">
-                    <Link to={`/users/${user.id}`}>
-                      <button className="py-1 px-4 bg-[#3a7aed] text-white rounded-[4px] active:translate-y-[1px] duration-200">
-                        Edit
-                      </button>
-                    </Link>
+                  <div className="flex justify-start gap-4 text-base">
+                    <button className="active:translate-y-[1px] duration-200">
+                      <Link to={`/users/${user.id}`}>
+                        <Edit />
+                      </Link>
+                    </button>
                     <button
-                      className="py-1 px-4 bg-red-500 text-white rounded-[4px] active:translate-y-[1px] duration-200"
+                      className="active:translate-y-[1px] duration-200"
                       onClick={() => deleteUser(user.id)}
                     >
-                      Delete
+                      <Delete />
                     </button>
                   </div>
                 </td>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useSetRecoilState } from 'recoil'
 import { tokenState, userState } from '../atom'
@@ -23,6 +24,7 @@ const Signup: React.FC = () => {
       .then(({ data }) => {
         setToken(data.token)
         setUser(data.user)
+        toast.success('Successfully created!')
       })
       .catch(err => {
         const { response } = err

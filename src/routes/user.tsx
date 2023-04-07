@@ -1,6 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, Navigate } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 import { useRecoilState } from 'recoil'
 import { tokenState, userState } from '../atom'
 import axiosClient from '../helpers/axios-client'
@@ -18,6 +19,7 @@ const User: React.FC = () => {
     await axiosClient.post('/logout')
     setUser(null)
     setToken(null)
+    toast.success('Logout successful!')
   }
 
   return (

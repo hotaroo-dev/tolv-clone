@@ -94,4 +94,26 @@ const Cart = () => (
   </svg>
 )
 
-export { Search, Exit, Arrow, Cart }
+const Delete = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24"
+    viewBox="0 96 960 960"
+    width="24"
+  >
+    <path d="M280 936q-33 0-56.5-23.5T200 856V336h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680 936H280Zm400-600H280v520h400V336ZM360 776h80V416h-80v360Zm160 0h80V416h-80v360ZM280 336v520-520Z" />
+  </svg>
+)
+
+const Edit = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24"
+    viewBox="0 96 960 960"
+    width="24"
+  >
+    <path d="M200 856h56l345-345-56-56-345 345v56Zm572-403L602 285l56-56q23-23 56.5-23t56.5 23l56 56q23 23 24 55.5T829 396l-57 57Zm-58 59L290 936H120V766l424-424 170 170Zm-141-29-28-28 56 56-28-28Z" />
+  </svg>
+)
+
+export { Search, Exit, Arrow, Cart, Delete, Edit }
