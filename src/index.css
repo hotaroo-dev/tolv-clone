@@ -209,8 +209,12 @@ body > div:not(#root) {
     @apply opacity-0;
   }
 
+  .hero-mobile {
+    @apply md:hidden;
+  }
+
   .hero-mobile .slide {
-    @apply h-screen sticky top-0 md:hidden;
+    @apply h-screen sticky top-0;
   }
 
   .slide:first-child .links label:not(:nth-child(2)),
