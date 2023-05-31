@@ -383,7 +383,7 @@ body > div:not(#root) {
   }
 
   .carts {
-    @apply z-10 fixed top-14 right-0 sm:max-w-sm p-4 bg-white shadow-cart rounded-[5px] origin-top-right;
+    @apply z-10 fixed top-14 right-0 left-0 sm:max-w-sm p-4 bg-white shadow-cart rounded-[5px] origin-top-right;
   }
 }
 
@@ -411,7 +411,7 @@ body > div:not(#root) {
   }
 
   .carts-size {
-    margin-inline: 2rem;
+    margin-inline: auto;
     width: calc(100% - 4rem);
   }
 
@@ -431,6 +431,12 @@ body > div:not(#root) {
 
   .stockists li.active span::before {
     content: '— ';
+  }
+
+  @media screen and (max-width: 480px) {
+    .carts-size {
+      width: calc(100% - 2rem);
+    }
   }
 
   @media (min-width: 640px) and (max-width: 767px) {
